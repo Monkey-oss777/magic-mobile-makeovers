@@ -44,6 +44,7 @@ export type Database = {
           tt_ttp: string | null
           tt_user_agent: string | null
           updated_at: string
+          utmify_sent_at: string | null
         }
         Insert: {
           ab_variant?: string | null
@@ -74,6 +75,7 @@ export type Database = {
           tt_ttp?: string | null
           tt_user_agent?: string | null
           updated_at?: string
+          utmify_sent_at?: string | null
         }
         Update: {
           ab_variant?: string | null
@@ -104,6 +106,7 @@ export type Database = {
           tt_ttp?: string | null
           tt_user_agent?: string | null
           updated_at?: string
+          utmify_sent_at?: string | null
         }
         Relationships: []
       }
