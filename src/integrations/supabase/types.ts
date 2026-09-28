@@ -27,6 +27,7 @@ export type Database = {
           fb_fbc: string | null
           fb_fbp: string | null
           fb_sent_at: string | null
+          fb2_sent_at: string | null
           id: string
           items: Json
           last_webhook: Json | null
@@ -58,6 +59,7 @@ export type Database = {
           fb_fbc?: string | null
           fb_fbp?: string | null
           fb_sent_at?: string | null
+          fb2_sent_at?: string | null
           id?: string
           items?: Json
           last_webhook?: Json | null
@@ -89,6 +91,7 @@ export type Database = {
           fb_fbc?: string | null
           fb_fbp?: string | null
           fb_sent_at?: string | null
+          fb2_sent_at?: string | null
           id?: string
           items?: Json
           last_webhook?: Json | null

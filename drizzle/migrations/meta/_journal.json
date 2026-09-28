@@ -29,6 +29,13 @@
       "when": 1790639658880,
       "tag": "0003_add_utmify_tracking",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790639672361,
+      "tag": "0004_add_secondary_meta_tracking",
+      "breakpoints": true
     }
   ]
 }
