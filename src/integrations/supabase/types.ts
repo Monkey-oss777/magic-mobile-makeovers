@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      pix_orders: {
+        Row: {
+          ab_variant: string | null
+          amount: number
+          created_at: string
+          customer_cpf: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          id: string
+          items: Json
+          last_webhook: Json | null
+          order_id: string
+          paid_at: string | null
+          product_name: string
+          shipping: Json
+          status: string
+          transaction_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          ab_variant?: string | null
+          amount: number
+          created_at?: string
+          customer_cpf: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          id?: string
+          items?: Json
+          last_webhook?: Json | null
+          order_id: string
+          paid_at?: string | null
+          product_name: string
+          shipping?: Json
+          status?: string
+          transaction_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ab_variant?: string | null
+          amount?: number
+          created_at?: string
+          customer_cpf?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string
+          id?: string
+          items?: Json
+          last_webhook?: Json | null
+          order_id?: string
+          paid_at?: string | null
+          product_name?: string
+          shipping?: Json
+          status?: string
+          transaction_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
