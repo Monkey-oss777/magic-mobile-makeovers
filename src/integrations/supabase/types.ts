@@ -32,6 +32,13 @@ export type Database = {
           shipping: Json
           status: string
           transaction_id: string | null
+          tt_event_id: string | null
+          tt_ip: string | null
+          tt_page_url: string | null
+          tt_sent_at: string | null
+          tt_ttclid: string | null
+          tt_ttp: string | null
+          tt_user_agent: string | null
           updated_at: string
         }
         Insert: {
@@ -51,6 +58,13 @@ export type Database = {
           shipping?: Json
           status?: string
           transaction_id?: string | null
+          tt_event_id?: string | null
+          tt_ip?: string | null
+          tt_page_url?: string | null
+          tt_sent_at?: string | null
+          tt_ttclid?: string | null
+          tt_ttp?: string | null
+          tt_user_agent?: string | null
           updated_at?: string
         }
         Update: {
@@ -70,6 +84,13 @@ export type Database = {
           shipping?: Json
           status?: string
           transaction_id?: string | null
+          tt_event_id?: string | null
+          tt_ip?: string | null
+          tt_page_url?: string | null
+          tt_sent_at?: string | null
+          tt_ttclid?: string | null
+          tt_ttp?: string | null
+          tt_user_agent?: string | null
           updated_at?: string
         }
         Relationships: []

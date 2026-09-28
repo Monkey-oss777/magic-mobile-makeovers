@@ -8,6 +8,13 @@
       "when": 1790639610066,
       "tag": "0000_recreate_pix_orders",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790639622735,
+      "tag": "0001_add_order_tracking_columns",
+      "breakpoints": true
     }
   ]
 }
