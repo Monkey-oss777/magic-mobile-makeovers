@@ -1,24 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Funnel from "@/components/funnel/Funnel";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Desafio Monster · Responda o Quiz e Leve o Copo 1,15L" },
+      {
+        name: "description",
+        content:
+          "Responda as 9 perguntas do Desafio Monster e leve o copo térmico 1,15L de aço inox por R$ 0. Você paga só a entrega rastreada. Lote limitado.",
+      },
+      { property: "og:title", content: "Desafio Monster · Copo Térmico 1,15L grátis" },
+      {
+        property: "og:description",
+        content:
+          "9 perguntas rápidas e o Copo Térmico Monster 1,15L de R$ 197 sai por R$ 0. Você paga só o envio.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <Funnel />
+    </main>
   );
 }

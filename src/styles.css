@@ -1,3 +1,5 @@
+@import "./styles/monster.css";
+@import "./styles/painel.css";
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
