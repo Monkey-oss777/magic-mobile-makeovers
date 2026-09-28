@@ -36,6 +36,13 @@
       "when": 1790639672361,
       "tag": "0004_add_secondary_meta_tracking",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790639690641,
+      "tag": "0005_restrict_direct_order_access",
+      "breakpoints": true
     }
   ]
 }
