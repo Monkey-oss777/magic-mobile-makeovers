@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { captureTikTokClick, tiktokPixelSnippet } from "../lib/tiktok";
+import { captureMetaClick, createMetaPixelSnippet } from "../lib/meta";
+import { getPublicMetaPixelIds } from "../lib/meta-pixels.functions";
+
 
 function NotFoundComponent() {
   return (
@@ -73,25 +77,28 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
+  loader: () => getPublicMetaPixelIds(),
+  head: ({ loaderData }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Desafio Monster" },
+      { name: "description", content: "Desafio Monster e copo térmico 1,15L." },
+      { property: "og:title", content: "Desafio Monster" },
+      { property: "og:description", content: "Desafio Monster e copo térmico 1,15L." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+    ],
+    scripts: [
+      ...(tiktokPixelSnippet ? [{ children: tiktokPixelSnippet }] : []),
+       ...((createMetaPixelSnippet(loaderData ?? [])) ? [{ children: createMetaPixelSnippet(loaderData ?? []) }] : []),
     ],
   }),
   shellComponent: RootShell,
@@ -102,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -116,6 +123,10 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    captureTikTokClick();
+    captureMetaClick();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
