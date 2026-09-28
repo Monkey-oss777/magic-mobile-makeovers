@@ -23,6 +23,10 @@ export type Database = {
           customer_email: string
           customer_name: string
           customer_phone: string
+          fb_event_id: string | null
+          fb_fbc: string | null
+          fb_fbp: string | null
+          fb_sent_at: string | null
           id: string
           items: Json
           last_webhook: Json | null
@@ -49,6 +53,10 @@ export type Database = {
           customer_email: string
           customer_name: string
           customer_phone: string
+          fb_event_id?: string | null
+          fb_fbc?: string | null
+          fb_fbp?: string | null
+          fb_sent_at?: string | null
           id?: string
           items?: Json
           last_webhook?: Json | null
@@ -75,6 +83,10 @@ export type Database = {
           customer_email?: string
           customer_name?: string
           customer_phone?: string
+          fb_event_id?: string | null
+          fb_fbc?: string | null
+          fb_fbp?: string | null
+          fb_sent_at?: string | null
           id?: string
           items?: Json
           last_webhook?: Json | null

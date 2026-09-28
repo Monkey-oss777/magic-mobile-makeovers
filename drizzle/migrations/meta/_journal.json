@@ -15,6 +15,13 @@
       "when": 1790639622735,
       "tag": "0001_add_order_tracking_columns",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790639643166,
+      "tag": "0002_add_meta_order_tracking",
+      "breakpoints": true
     }
   ]
 }
