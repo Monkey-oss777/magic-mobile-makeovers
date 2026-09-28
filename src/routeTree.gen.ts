@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ErroFreteRouteImport } from './routes/erro-frete'
+import { Route as ObrigadoRouteImport } from './routes/obrigado'
+import { Route as PainelRouteImport } from './routes/painel'
+import { Route as ApiPublicPixWebhookRouteImport } from './routes/api/public/pix-webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ErroFreteRoute = ErroFreteRouteImport.update({
+  id: '/erro-frete',
+  path: '/erro-frete',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObrigadoRoute = ObrigadoRouteImport.update({
+  id: '/obrigado',
+  path: '/obrigado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPixWebhookRoute = ApiPublicPixWebhookRouteImport.update({
+  id: '/api/public/pix-webhook',
+  path: '/api/public/pix-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/erro-frete': typeof ErroFreteRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/painel': typeof PainelRoute
+  '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/erro-frete': typeof ErroFreteRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/painel': typeof PainelRoute
+  '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/erro-frete': typeof ErroFreteRoute
+  '/obrigado': typeof ObrigadoRoute
+  '/painel': typeof PainelRoute
+  '/api/public/pix-webhook': typeof ApiPublicPixWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/erro-frete' | '/obrigado' | '/painel' | '/api/public/pix-webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/erro-frete' | '/obrigado' | '/painel' | '/api/public/pix-webhook'
+  id:
+    | '__root__'
+    | '/'
+    | '/erro-frete'
+    | '/obrigado'
+    | '/painel'
+    | '/api/public/pix-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ErroFreteRoute: typeof ErroFreteRoute
+  ObrigadoRoute: typeof ObrigadoRoute
+  PainelRoute: typeof PainelRoute
+  ApiPublicPixWebhookRoute: typeof ApiPublicPixWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/erro-frete': {
+      id: '/erro-frete'
+      path: '/erro-frete'
+      fullPath: '/erro-frete'
+      preLoaderRoute: typeof ErroFreteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/obrigado': {
+      id: '/obrigado'
+      path: '/obrigado'
+      fullPath: '/obrigado'
+      preLoaderRoute: typeof ObrigadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/pix-webhook': {
+      id: '/api/public/pix-webhook'
+      path: '/api/public/pix-webhook'
+      fullPath: '/api/public/pix-webhook'
+      preLoaderRoute: typeof ApiPublicPixWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ErroFreteRoute: ErroFreteRoute,
+  ObrigadoRoute: ObrigadoRoute,
+  PainelRoute: PainelRoute,
+  ApiPublicPixWebhookRoute: ApiPublicPixWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
