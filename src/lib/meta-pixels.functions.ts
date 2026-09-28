@@ -1,12 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const PAINEL_SENHA = "Lula2026";
 const passwordSchema = z.string().min(1).max(80);
 const pixelIdSchema = z.string().regex(/^\d{8,25}$/, "Pixel ID inválido");
 
 function passwordMatches(input: string) {
-  const expected = PAINEL_SENHA;
+  const expected = process.env["PAINEL_SENHA"];
+  if (!expected) return false;
   if (input.length !== expected.length) return false;
   let difference = 0;
   for (let index = 0; index < expected.length; index += 1) {

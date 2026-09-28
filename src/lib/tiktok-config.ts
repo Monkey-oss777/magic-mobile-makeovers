@@ -3,4 +3,4 @@
  * Basta colar o ID aqui — o Events API server-side usa o mesmo valor
  * (ou a variável de ambiente TIKTOK_PIXEL_ID, se preferir).
  */
-export const TIKTOK_PIXEL_ID = "DAF3MOBC77UDHLL3KFFG";
+export const TIKTOK_PIXEL_ID = "";

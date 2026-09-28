@@ -1,8 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const PAINEL_SENHA = "Lula2026";
-
 export type PainelSource = "tiktok" | "meta" | "direto";
 export type PainelGender = "homem" | "mulher" | "indefinido";
 
@@ -64,7 +62,8 @@ function paramsOf(url?: string | null): URLSearchParams {
 export const getPaidSales = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => z.object({ password: z.string().max(80) }).parse(input))
   .handler(async ({ data }) => {
-    if (data.password !== PAINEL_SENHA) return { ok: false as const };
+    const expected = process.env["PAINEL_SENHA"];
+    if (!expected || data.password !== expected) return { ok: false as const };
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: rows } = await supabaseAdmin

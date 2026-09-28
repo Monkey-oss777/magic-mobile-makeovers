@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
 
-const STABLE_URL = "https://project--658f690d-3111-4b69-975a-6e9b8c016097.lovable.app";
+const STABLE_URL = process.env["PUBLIC_SITE_URL"];
 const CACOFY_URL = "https://app.cacofy.com/api/external_api.php";
 
 const itemSchema = z.object({ nome: z.string().min(1), valor: z.number().min(0) });
@@ -49,7 +49,8 @@ function webhookUrl() {
   } catch {
     /* sem request disponível */
   }
-  return `${STABLE_URL}/api/public/pix-webhook`;
+  if (STABLE_URL) return `${STABLE_URL.replace(/\/$/, "")}/api/public/pix-webhook`;
+  throw new Error("Configure PUBLIC_SITE_URL para receber o webhook PIX");
 }
 
 function reqHeader(name: string): string | null {
