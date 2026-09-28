@@ -43,6 +43,13 @@
       "when": 1790639690641,
       "tag": "0005_restrict_direct_order_access",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790639708203,
+      "tag": "0006_create_managed_meta_pixels",
+      "breakpoints": true
     }
   ]
 }

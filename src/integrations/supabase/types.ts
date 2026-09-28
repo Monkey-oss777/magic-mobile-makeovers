@@ -14,6 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
+      meta_pixel_deliveries: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          event_id: string
+          event_name: string
+          id: string
+          order_id: string
+          pixel_id: string
+          sent_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          event_id: string
+          event_name?: string
+          id?: string
+          order_id: string
+          pixel_id: string
+          sent_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          event_id?: string
+          event_name?: string
+          id?: string
+          order_id?: string
+          pixel_id?: string
+          sent_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meta_pixel_deliveries_pixel_id_fkey"
+            columns: ["pixel_id"]
+            isOneToOne: false
+            referencedRelation: "meta_pixels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meta_pixels: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          pixel_id: string
+          token_ciphertext: string
+          token_iv: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          pixel_id: string
+          token_ciphertext: string
+          token_iv: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          pixel_id?: string
+          token_ciphertext?: string
+          token_iv?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       pix_orders: {
         Row: {
           ab_variant: string | null
