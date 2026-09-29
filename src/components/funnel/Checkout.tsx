@@ -568,9 +568,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                     <circle cx="17.5" cy="18" r="1.8" />
                   </svg>
                   <span>
-                     <b>As três peças são grátis; acessórios opcionais são cobrados à parte. Você paga a entrega.</b> Todos os envios seguem
-                    em <b>caixa reforçada</b>, com proteção contra avarias e{" "}
-                    <b>código de rastreamento</b>.
+                    As três peças são grátis, você paga apenas a entrega. Todos os envios seguem em caixa reforçada, com proteção contra avarias e código de rastreamento.
                   </span>
                 </div>
                 <div className="mst-ship">
