@@ -28,7 +28,7 @@ export const getOrderSummary = createServerFn({ method: "POST" })
       items: Array.isArray(row.items)
         ? row.items.filter((item): item is { nome: string; valor: number } =>
             typeof item === "object" && item !== null && !Array.isArray(item) &&
-            typeof item.nome === "string" && typeof item.valor === "number",
+            typeof item["nome"] === "string" && typeof item["valor"] === "number",
           )
         : [],
       customer: {

@@ -13,7 +13,6 @@ export const ICHEF_IMAGES = {
   conjunto: conjunto.url,
   frigideiraPequena: frigideiraPequena.url,
   frigideiraGrande: frigideiraGrande.url,
-  panelaCabo: cacarola.url,
   panelaPequena: panelaPequena.url,
   panelaGrande: panelaGrande.url,
   cacarola: cacarola.url,
