@@ -1,0 +1,3 @@
+- [ ] Adaptar as nove perguntas, imagens, textos e paleta para iChef Shark 7 peças.
+- [ ] Manter preços de frete, opções de envio e esteira; trocar extras e referências ao produto anterior.
+- [ ] Verificar navegação e apresentação em computador e celular.
