@@ -7,6 +7,7 @@ import { fbIdentify, fbParams, fbTrack, getMetaAttribution } from "@/lib/meta";
 import { createPixCharge, getPixStatus } from "@/lib/pix.functions";
 import { track, type PayVariant } from "@/lib/ab";
 import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
+import { PRIZE_PRODUCTS } from "@/lib/prize-products";
 
 
 const brl = (v: number) => v.toFixed(2).replace(".", ",");
@@ -37,6 +38,7 @@ const maskExp = (v: string) => digits(v).slice(0, 4).replace(/(\d{2})(\d{1,2})/,
 
 interface Props {
   variant: PayVariant;
+  picks: string[];
   onClose: () => void;
 }
 
@@ -44,7 +46,8 @@ type Step = 1 | 2 | 3;
 
 const INSTALLMENTS = [1, 2, 3, 4, 6, 10, 12];
 
-export default function Checkout({ variant, onClose }: Props) {
+export default function Checkout({ variant, picks, onClose }: Props) {
+  const selectedPieces = PRIZE_PRODUCTS.filter((product) => picks.includes(product.id));
   const [step, setStep] = useState<Step>(1);
   const [err, setErr] = useState("");
   const [ship, setShip] = useState<string>(SHIPPING[0].id);
@@ -170,12 +173,14 @@ export default function Checkout({ variant, onClose }: Props) {
 
   async function finalizar() {
     setErr("");
+    if (selectedPieces.length !== 3) return setErr("Escolha três peças antes de continuar.");
     track("payment_attempt", variant, { total, method: variant });
 
     if (variant === "pix") {
       setPaying(true);
       try {
         const itens = [
+          ...selectedPieces.map((piece) => ({ nome: piece.name, valor: 0 })),
           { nome: `Envio rastreado ${shipOpt.id.toUpperCase()}`, valor: shipOpt.cost },
           ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (3 peças)", valor: BUMP_UTENSILIOS }] : []),
           ...(bumpProtetores ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_PROTETORES }] : []),
@@ -183,7 +188,7 @@ export default function Checkout({ variant, onClose }: Props) {
         const r = await criarPix({
           data: {
             amount: Number(total.toFixed(2)),
-            productName: "Conjunto iChef Shark 7 peças - entrega",
+            productName: `3 peças iChef Shark (${selectedPieces.map((piece) => piece.name).join(", ")}) - entrega`,
             items: itens,
             variant,
             customer: {
@@ -395,10 +400,10 @@ export default function Checkout({ variant, onClose }: Props) {
             <div className="mst-kicker">Último passo</div>
             <h2 className="mst-h2">
               Finalize seu pedido
-              <br />e leve o seu <span className="mst-lime">conjunto grátis</span>
+              <br />e leve suas <span className="mst-lime">3 peças grátis</span>
             </h2>
             <p className="mst-sub">
-              O conjunto custa R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
+              As três peças custam R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
             </p>
 
             <div className="mst-totals">
@@ -407,7 +412,7 @@ export default function Checkout({ variant, onClose }: Props) {
                 <b>#{pedido}</b>
               </div>
               <div className="mst-total-row">
-                <span>Conjunto iChef Shark 7 peças</span>
+                <span>{selectedPieces.map((piece) => piece.name).join(" + ")}</span>
                 <b className="green">GRÁTIS</b>
               </div>
               <div className="mst-total-row">
@@ -495,7 +500,7 @@ export default function Checkout({ variant, onClose }: Props) {
                   <span className="mst-lime">de resgate</span>
                 </h2>
                 <p className="mst-sub">
-                  Seu conjunto foi liberado por <b>R$ 0</b> — complete os dados para seguir.
+                   Suas três peças foram liberadas por <b>R$ 0</b> — complete os dados para seguir.
                 </p>
                 <div className="mst-field">
                   <label htmlFor="co-nome">Nome completo</label>
@@ -550,7 +555,7 @@ export default function Checkout({ variant, onClose }: Props) {
                 <h2 className="mst-h2">
                   Onde entregar
                   <br />
-                  <span className="mst-lime">o seu conjunto</span>
+                  <span className="mst-lime">as suas peças</span>
                 </h2>
 
                 <div className="mst-kicker" style={{ margin: "0 0 8px" }}>
@@ -563,7 +568,7 @@ export default function Checkout({ variant, onClose }: Props) {
                     <circle cx="17.5" cy="18" r="1.8" />
                   </svg>
                   <span>
-                    <b>O conjunto é grátis; acessórios opcionais são cobrados à parte. Você paga a entrega.</b> Todos os envios seguem
+                     <b>As três peças são grátis; acessórios opcionais são cobrados à parte. Você paga a entrega.</b> Todos os envios seguem
                     em <b>caixa reforçada</b>, com proteção contra avarias e{" "}
                     <b>código de rastreamento</b>.
                   </span>
@@ -732,7 +737,7 @@ export default function Checkout({ variant, onClose }: Props) {
 
                 <div className="mst-totals">
                   <div className="mst-total-row">
-                    <span>Conjunto iChef Shark 7 peças</span>
+                    <span>{selectedPieces.map((piece) => piece.name).join(" + ")}</span>
                     <b className="green">
                       GRÁTIS
                     </b>
@@ -899,7 +904,7 @@ export default function Checkout({ variant, onClose }: Props) {
             </div>
             <div className="mst-bar-act">
               <span className="mst-bar-tot">
-                <span>{step === 3 ? "Total" : "Seu conjunto"}</span>
+                 <span>{step === 3 ? "Total" : "Suas peças"}</span>
                 <b>{step === 3 ? `R$ ${brl(total)}` : "GRÁTIS"}</b>
               </span>
               <button

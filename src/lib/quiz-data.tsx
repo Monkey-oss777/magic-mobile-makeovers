@@ -157,7 +157,7 @@ export const QUESTIONS: QuizQuestion[] = [
   { k: "SUA PANELA", kind: "sabor", p: "Qual tipo de panela você mais usa?", o: [
     { t: "Frigideira pequena", img: IMG.frigideiraPequena },
     { t: "Frigideira grande", img: IMG.frigideiraGrande },
-    { t: "Panela com cabo", img: IMG.panelaCabo },
+    { t: "Panela pequena", img: IMG.panelaPequena },
     { t: "Caçarola", img: IMG.cacarola },
   ] },
   { k: "HOJE", kind: "arte", p: "O que mais incomoda nas suas panelas atuais?", o: [
@@ -166,7 +166,7 @@ export const QUESTIONS: QuizQuestion[] = [
   ] },
   { k: "O CONJUNTO", kind: "grid", p: "Qual detalhe do conjunto Shark mais chama sua atenção?", o: [
     { t: "Frigideiras", img: IMG.frigideiraGrande }, { t: "Panelas com tampa", img: IMG.cacarola },
-    { t: "Cabos azuis", img: IMG.panelaCabo }, { t: "Conjunto completo", img: IMG.conjunto },
+    { t: "Cabos azuis", img: IMG.panelaGrande }, { t: "Conjunto completo", img: IMG.conjunto },
   ] },
   { k: "JÁ ACONTECEU", kind: "duo", p: "Sua comida já grudou mesmo com a panela untada?", o: [
     { t: "Já", s: "mais de uma vez", icon: ICO.sim, tone: "ok" },

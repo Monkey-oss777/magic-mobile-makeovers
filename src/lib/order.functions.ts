@@ -25,6 +25,12 @@ export const getOrderSummary = createServerFn({ method: "POST" })
       amount: Number(row.amount),
       status: row.status,
       paidAt: row.paid_at,
+      items: Array.isArray(row.items)
+        ? row.items.filter((item): item is { nome: string; valor: number } =>
+            typeof item === "object" && item !== null && !Array.isArray(item) &&
+            typeof item["nome"] === "string" && typeof item["valor"] === "number",
+          )
+        : [],
       customer: {
         name: row.customer_name,
         email: row.customer_email,
