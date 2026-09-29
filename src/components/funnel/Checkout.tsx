@@ -883,8 +883,8 @@ export default function Checkout({ variant, onClose }: Props) {
             {err && <div className="mst-err">{err}</div>}
 
             <p className="mst-company">
-              <strong>Oferta iChef Shark</strong>
-              Confira os detalhes do pedido antes de pagar.
+              <strong>Polimport Comércio e Exportação LTDA</strong>
+              CNPJ 00.436.042/0008-46
             </p>
           </>
         )}
