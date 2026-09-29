@@ -31,7 +31,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
         const signature = url.searchParams.get("sig");
         const signingKey = process.env["PIX_WEBHOOK_SIGNING_KEY"];
         // Aceita os códigos curtos novos e os UUIDs antigos ainda aguardando retorno.
-        if (!signingKey || !orderId || !/^(?:MST-[0-9A-V]{11}|MST-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})$/.test(orderId) || !signature || !/^[0-9a-f]{64}$/.test(signature)) {
+        if (!signingKey || !orderId || !/^(?:MST-[0-9A-V]{10}|MST-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})$/.test(orderId) || !signature || !/^[0-9a-f]{64}$/.test(signature)) {
           return new Response("unauthorized", { status: 401 });
         }
         const expected = createHmac("sha256", signingKey).update(orderId).digest("hex");

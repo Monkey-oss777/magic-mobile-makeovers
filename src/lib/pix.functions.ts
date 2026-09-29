@@ -75,9 +75,9 @@ export const createPixCharge = createServerFn({ method: "POST" })
     let callbackUrl: string;
     try {
       // Resolva antes de registrar a cobrança: não crie um pedido sem retorno autenticado.
-      // MST- + 11 caracteres = 15 no total; 55 bits aleatórios para evitar colisões.
-      const shortId = (BigInt(`0x${randomBytes(7).toString("hex")}`) & ((1n << 55n) - 1n))
-        .toString(32).toUpperCase().padStart(11, "0");
+      // #MST- + 10 caracteres = 15 na tela; 50 bits aleatórios para evitar colisões.
+      const shortId = (BigInt(`0x${randomBytes(7).toString("hex")}`) & ((1n << 50n) - 1n))
+        .toString(32).toUpperCase().padStart(10, "0");
       callbackUrl = webhookUrl(`MST-${shortId}`);
     } catch {
       return { ok: false as const, error: "Pagamento indisponível no momento." };
