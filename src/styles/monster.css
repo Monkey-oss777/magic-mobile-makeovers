@@ -822,7 +822,8 @@
 
 .mst-co-brand img {
   height: 24px;
-  width: auto;
+  width: 42px;
+  object-fit: contain;
 }
 
 .mst-co-brand span {

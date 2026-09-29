@@ -398,8 +398,7 @@ export default function Checkout({ variant, onClose }: Props) {
               <br />e leve o seu <span className="mst-lime">conjunto grátis</span>
             </h2>
             <p className="mst-sub">
-              O conjunto custa R$ 0,00. O total abaixo corresponde somente à entrega que você
-              escolheu.
+              O conjunto custa R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
             </p>
 
             <div className="mst-totals">
@@ -696,7 +695,7 @@ export default function Checkout({ variant, onClose }: Props) {
                     <img src={IMG.utensilios} alt="Kit de utensílios de silicone" loading="lazy" />
                   </span>
                   <span>
-                    <span className="mst-bump-t">Leva Utensílios de silicone</span>
+                    <span className="mst-bump-t">Kit de utensílios de silicone</span>
                     <span className="mst-bump-d">3 utensílios para cozinhar e servir</span>
                   </span>
                   <span className="mst-bump-p">
