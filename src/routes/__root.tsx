@@ -15,6 +15,8 @@ import { captureTikTokClick, tiktokPixelSnippet } from "../lib/tiktok";
 import { captureMetaClick, createMetaPixelSnippet } from "../lib/meta";
 import { getPublicMetaPixelIds } from "../lib/meta-pixels.functions";
 
+// Equivalent to the original Utmify loader, without its encoded wrapper.
+const utmifyTrackingSnippet = `(function(){var script=document.createElement("script");script.src="https://cdn.utmify.com.br/scripts/utms/latest.js";script.async=true;script.defer=true;script.setAttribute("data-utmify-prevent-xcod-sck","");script.setAttribute("data-utmify-prevent-subids","");(document.head||document.documentElement).appendChild(script);})();`;
 
 function NotFoundComponent() {
   return (
@@ -97,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
     scripts: [
+      { children: utmifyTrackingSnippet },
       ...(tiktokPixelSnippet ? [{ children: tiktokPixelSnippet }] : []),
        ...((createMetaPixelSnippet(loaderData ?? [])) ? [{ children: createMetaPixelSnippet(loaderData ?? []) }] : []),
     ],
