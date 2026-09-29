@@ -26,7 +26,7 @@ import {
 export const Route = createFileRoute("/painel")({
   head: () => ({
     meta: [
-      { title: "Painel de Vendas Pagas | Monster" },
+      { title: "Painel de Vendas Pagas | iChef Shark" },
       { name: "description", content: "Painel interno de vendas pagas por origem de anúncio (TikTok e Facebook)." },
       { name: "robots", content: "noindex, nofollow" },
       { property: "og:title", content: "Painel de Vendas Pagas" },

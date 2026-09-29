@@ -49,10 +49,10 @@ export function getMetaAttribution(): MetaAttribution {
 
 /** Produto principal do funil — parâmetros padrão dos eventos. */
 export const FB_CONTENT = {
-  content_ids: ["copo-monster-115"],
-  content_name: "Copo Térmico Monster 1,15L",
+  content_ids: ["ichef-shark-7-pecas"],
+  content_name: "Conjunto iChef Shark 7 peças",
   content_type: "product",
-  content_category: "Bebidas / Brindes",
+  content_category: "Casa / Cozinha",
   currency: "BRL",
 };
 

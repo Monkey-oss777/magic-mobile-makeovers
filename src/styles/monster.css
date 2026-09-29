@@ -1,5 +1,5 @@
 /* ============================================================
-   Funil Monster · Copo 1,15L — design system do funil
+   Funil iChef Shark · 7 peças — design system do funil
    Mobile-first. Todos os valores são tokens (--mst-*).
    ============================================================ */
 
@@ -10,14 +10,14 @@
   --mst-panel-2: #161a22;
   --mst-ink: #f4f7ef;
   --mst-mut: #9aa392;
-  --mst-lime: #a6ff00;
-  --mst-lime-dark: #6fb100;
+  --mst-lime: #4d9ff5;
+  --mst-lime-dark: #246bb9;
   --mst-line: rgba(255, 255, 255, 0.1);
   --mst-line-2: rgba(255, 255, 255, 0.18);
   --mst-danger: #ff5a52;
   --mst-r: 14px;
   --mst-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
-  --mst-glow: 0 0 34px rgba(166, 255, 0, 0.35);
+  --mst-glow: 0 0 34px rgba(77, 159, 245, 0.35);
   --mst-pad: clamp(14px, 4.4vw, 26px);
   --mst-font: "Barlow", system-ui, sans-serif;
   --mst-font-cond: "Barlow Condensed", "Barlow", system-ui, sans-serif;
@@ -137,13 +137,14 @@
   position: relative;
   padding: clamp(18px, 6vw, 42px) 0 clamp(30px, 9vw, 56px);
   background:
-    radial-gradient(120% 60% at 50% 0%, rgba(166, 255, 0, 0.14), transparent 62%),
+    radial-gradient(120% 60% at 50% 0%, rgba(77, 159, 245, 0.14), transparent 62%),
     var(--mst-bg);
 }
 
 .mst-logo {
-  height: clamp(18px, 5.5vw, 24px);
-  width: auto;
+  height: clamp(92px, 27vw, 150px);
+  width: min(100%, 340px);
+  object-fit: contain;
   margin: 0 auto 10px;
 }
 
@@ -174,7 +175,7 @@
   padding: 15px 18px;
   border-radius: 12px;
   background: var(--mst-lime);
-  color: #06130a;
+  color: #081523;
   font-family: var(--mst-font-cond);
   font-weight: 800;
   text-transform: uppercase;
@@ -199,7 +200,7 @@
   min-height: 48px;
   border: 1px solid var(--mst-lime);
   border-radius: 12px;
-  background: rgba(166, 255, 0, 0.08);
+  background: rgba(77, 159, 245, 0.08);
   color: var(--mst-lime);
   font-family: var(--mst-font-cond);
   text-transform: uppercase;
@@ -210,7 +211,7 @@
 
 .mst-cta-ghost:active {
   transform: scale(0.98);
-  background: rgba(166, 255, 0, 0.14);
+  background: rgba(77, 159, 245, 0.14);
 }
 
 /* ---------- hero ---------- */
@@ -221,7 +222,7 @@
   border: 1px solid var(--mst-line);
   border-radius: 20px;
   background:
-    radial-gradient(70% 60% at 50% 40%, rgba(166, 255, 0, 0.16), transparent 70%),
+    radial-gradient(70% 60% at 50% 40%, rgba(77, 159, 245, 0.16), transparent 70%),
     var(--mst-bg-2);
 }
 
@@ -240,7 +241,7 @@
   padding: 6px 10px;
   border-radius: 999px;
   background: var(--mst-lime);
-  color: #06130a;
+  color: #081523;
   font-family: var(--mst-font-mono);
   font-weight: 700;
   font-size: 12px;
@@ -342,9 +343,9 @@
   gap: 12px;
   min-height: 56px;
   padding: 12px 14px;
-  border: 1px solid rgba(166, 255, 0, 0.45);
+  border: 1px solid rgba(77, 159, 245, 0.45);
   border-radius: 14px;
-  background: rgba(166, 255, 0, 0.1);
+  background: rgba(77, 159, 245, 0.1);
   text-align: left;
   transition: border-color 0.15s ease, transform 0.12s ease, background 0.15s ease;
 }
@@ -352,7 +353,7 @@
 .mst-opt:active,
 .mst-opt.is-picked {
   border-color: var(--mst-lime);
-  background: rgba(166, 255, 0, 0.2);
+  background: rgba(77, 159, 245, 0.2);
   transform: scale(0.985);
 }
 
@@ -504,7 +505,7 @@
   border-radius: 22px;
   border: 1px solid var(--mst-line);
   background:
-    radial-gradient(65% 55% at 50% 45%, rgba(166, 255, 0, 0.2), transparent 72%),
+    radial-gradient(65% 55% at 50% 45%, rgba(77, 159, 245, 0.2), transparent 72%),
     var(--mst-bg-2);
 }
 
@@ -637,7 +638,7 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(166, 255, 0, 0.13), transparent 70%);
+  background: radial-gradient(60% 60% at 50% 50%, rgba(77, 159, 245, 0.13), transparent 70%);
 }
 
 .mst-spec-ph img {
@@ -973,15 +974,15 @@
   gap: 14px;
   min-height: 76px;
   padding: 16px 14px;
-  border: 1px solid rgba(166, 255, 0, 0.45);
+  border: 1px solid rgba(77, 159, 245, 0.45);
   border-radius: 16px;
-  background: rgba(166, 255, 0, 0.1);
+  background: rgba(77, 159, 245, 0.1);
   text-align: left;
 }
 
 .mst-ship-row.is-on {
   border-color: var(--mst-lime);
-  background: rgba(166, 255, 0, 0.2);
+  background: rgba(77, 159, 245, 0.2);
 }
 
 .mst-radio {
@@ -1063,9 +1064,9 @@
   gap: 10px;
   width: 100%;
   padding: 12px;
-  border: 1px dashed rgba(166, 255, 0, 0.55);
+  border: 1px dashed rgba(77, 159, 245, 0.55);
   border-radius: 14px;
-  background: rgba(166, 255, 0, 0.1);
+  background: rgba(77, 159, 245, 0.1);
   text-align: left;
   margin-bottom: 10px;
 }
@@ -1089,7 +1090,7 @@
 .mst-bump.is-on {
   border-style: solid;
   border-color: var(--mst-lime);
-  background: rgba(166, 255, 0, 0.2);
+  background: rgba(77, 159, 245, 0.2);
 }
 
 .mst-bump-t {
@@ -1128,7 +1129,7 @@
 .mst-bump.is-on .mst-chk {
   background: var(--mst-lime);
   border-color: var(--mst-lime);
-  color: #06130a;
+  color: #081523;
 }
 
 .mst-chk svg {
@@ -1206,9 +1207,9 @@
 .mst-pay-tab {
   min-height: 52px;
   padding: 10px;
-  border: 1px solid rgba(166, 255, 0, 0.45);
+  border: 1px solid rgba(77, 159, 245, 0.45);
   border-radius: 12px;
-  background: rgba(166, 255, 0, 0.1);
+  background: rgba(77, 159, 245, 0.1);
   font-family: var(--mst-font-cond);
   text-transform: uppercase;
   font-size: 15px;
@@ -1226,7 +1227,7 @@
 
 .mst-pay-tab.is-on {
   border-color: var(--mst-lime);
-  background: rgba(166, 255, 0, 0.2);
+  background: rgba(77, 159, 245, 0.2);
 }
 
 .mst-pix-code {
@@ -1280,7 +1281,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--mst-lime);
-  color: #06130a;
+  color: #081523;
   font-family: var(--mst-font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -1409,7 +1410,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--mst-lime);
-  color: #06130a;
+  color: #081523;
   box-shadow: var(--mst-glow);
 }
 
@@ -1504,8 +1505,8 @@
 }
 
 .mst-note-ok {
-  border: 1px solid rgba(166, 255, 0, 0.4);
-  background: rgba(166, 255, 0, 0.08);
+  border: 1px solid rgba(77, 159, 245, 0.4);
+  background: rgba(77, 159, 245, 0.08);
   border-radius: 14px;
   padding: 16px 15px;
   font-size: 14px;
@@ -1607,7 +1608,7 @@
 }
 
 .mst-status-line b.ok {
-  color: #a6ff00;
+  color: var(--mst-lime);
 }
 
 /* ---------- respiro extra em telas pequenas: frete ---------- */
