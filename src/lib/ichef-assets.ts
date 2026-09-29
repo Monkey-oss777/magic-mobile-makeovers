@@ -5,7 +5,7 @@ import frigideiraGrande from "@/assets/ichef-frigideira-grande-individual.png.as
 import panelaPequena from "@/assets/ichef-panela-pequena.png.asset.json";
 import panelaGrande from "@/assets/ichef-panela-grande.png.asset.json";
 import cacarola from "@/assets/ichef-cacarola-individual.png.asset.json";
-import utensilios from "@/assets/utensilios-silicone.jpg";
+import utensilios from "@/assets/utensilios-silicone-7.jpg";
 import protetores from "@/assets/protetores-panelas.jpg";
 
 export const ICHEF_IMAGES = {
