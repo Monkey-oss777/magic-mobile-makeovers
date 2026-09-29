@@ -683,7 +683,7 @@ export default function Checkout({ variant, onClose }: Props) {
                 <h2 className="mst-h2">
                   Pagamento
                   <br />
-                  <span className="mst-lime">só do envio</span>
+                  <span className="mst-lime">do seu resgate</span>
                 </h2>
 
                 <button

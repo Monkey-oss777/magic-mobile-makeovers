@@ -179,7 +179,7 @@ export default function Funnel() {
               <span className="mst-lime">grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, o Conjunto iChef Shark 7 peças sai <b>por zero</b> — você paga só a entrega.
+              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, o Conjunto iChef Shark 7 peças sai <b>por zero</b> — você paga a entrega escolhida e somente os acessórios que adicionar.
             </p>
 
             <div className="mst-hero-ph">
