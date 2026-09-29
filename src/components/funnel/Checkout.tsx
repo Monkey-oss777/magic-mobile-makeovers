@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useNavigate } from "@tanstack/react-router";
-import { BUMP_COPO, BUMP_FARDO, SHIPPING } from "@/lib/quiz-data";
+import { BUMP_UTENSILIOS, BUMP_PROTETORES, SHIPPING } from "@/lib/quiz-data";
 import { getTikTokAttribution, ttIdentify, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbIdentify, fbParams, fbTrack, getMetaAttribution } from "@/lib/meta";
 import { createPixCharge, getPixStatus } from "@/lib/pix.functions";
@@ -48,8 +48,8 @@ export default function Checkout({ variant, onClose }: Props) {
   const [step, setStep] = useState<Step>(1);
   const [err, setErr] = useState("");
   const [ship, setShip] = useState<string>(SHIPPING[0].id);
-  const [bumpCopo, setBumpCopo] = useState(false);
-  const [bumpFardo, setBumpFardo] = useState(false);
+  const [bumpUtensilios, setBumpUtensilios] = useState(false);
+  const [bumpProtetores, setBumpProtetores] = useState(false);
   const [paying, setPaying] = useState(false);
   const [pixReady, setPixReady] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -84,8 +84,8 @@ export default function Checkout({ variant, onClose }: Props) {
   }, []);
 
   const total = useMemo(
-    () => shipOpt.cost + (bumpCopo ? BUMP_COPO : 0) + (bumpFardo ? BUMP_FARDO : 0),
-    [shipOpt.cost, bumpCopo, bumpFardo],
+    () => shipOpt.cost + (bumpUtensilios ? BUMP_UTENSILIOS : 0) + (bumpProtetores ? BUMP_PROTETORES : 0),
+    [shipOpt.cost, bumpUtensilios, bumpProtetores],
   );
 
   const [pedido, setPedido] = useState("");
@@ -177,8 +177,8 @@ export default function Checkout({ variant, onClose }: Props) {
       try {
         const itens = [
           { nome: `Envio rastreado ${shipOpt.id.toUpperCase()}`, valor: shipOpt.cost },
-          ...(bumpCopo ? [{ nome: "Kit de utensílios de silicone (3 peças)", valor: BUMP_COPO }] : []),
-          ...(bumpFardo ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_FARDO }] : []),
+          ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (3 peças)", valor: BUMP_UTENSILIOS }] : []),
+          ...(bumpProtetores ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_PROTETORES }] : []),
         ];
         const r = await criarPix({
           data: {
@@ -414,16 +414,16 @@ export default function Checkout({ variant, onClose }: Props) {
                 <span>Envio rastreado ({shipOpt.id.toUpperCase()})</span>
                 <b>R$ {brl(shipOpt.cost)}</b>
               </div>
-              {bumpCopo && (
+              {bumpUtensilios && (
                 <div className="mst-total-row">
                   <span>Utensílios de silicone</span>
-                  <b>R$ {brl(BUMP_COPO)}</b>
+                  <b>R$ {brl(BUMP_UTENSILIOS)}</b>
                 </div>
               )}
-              {bumpFardo && (
+              {bumpProtetores && (
                 <div className="mst-total-row">
                   <span>Protetores de panelas</span>
-                  <b>R$ {brl(BUMP_FARDO)}</b>
+                  <b>R$ {brl(BUMP_PROTETORES)}</b>
                 </div>
               )}
               <div className="mst-total-final">
@@ -688,8 +688,8 @@ export default function Checkout({ variant, onClose }: Props) {
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpCopo ? " is-on" : "")}
-                  onClick={() => setBumpCopo((v) => !v)}
+                  className={"mst-bump" + (bumpUtensilios ? " is-on" : "")}
+                  onClick={() => setBumpUtensilios((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
                     <img src={IMG.utensilios} alt="Kit de utensílios de silicone" loading="lazy" />
@@ -699,7 +699,7 @@ export default function Checkout({ variant, onClose }: Props) {
                     <span className="mst-bump-d">3 utensílios para cozinhar e servir</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_COPO)}
+                    R$ {brl(BUMP_UTENSILIOS)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -710,8 +710,8 @@ export default function Checkout({ variant, onClose }: Props) {
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpFardo ? " is-on" : "")}
-                  onClick={() => setBumpFardo((v) => !v)}
+                  className={"mst-bump" + (bumpProtetores ? " is-on" : "")}
+                  onClick={() => setBumpProtetores((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
                     <img src={IMG.protetores} alt="Kit de protetores de panelas" loading="lazy" />
@@ -721,7 +721,7 @@ export default function Checkout({ variant, onClose }: Props) {
                     <span className="mst-bump-d">3 separadores para guardar as peças</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_FARDO)}
+                    R$ {brl(BUMP_PROTETORES)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -741,16 +741,16 @@ export default function Checkout({ variant, onClose }: Props) {
                     <span>Frete ({shipOpt.id.toUpperCase()})</span>
                     <b>R$ {brl(shipOpt.cost)}</b>
                   </div>
-                  {bumpCopo && (
+                  {bumpUtensilios && (
                     <div className="mst-total-row">
                       <span>Utensílios de silicone</span>
-                      <b>R$ {brl(BUMP_COPO)}</b>
+                      <b>R$ {brl(BUMP_UTENSILIOS)}</b>
                     </div>
                   )}
-                  {bumpFardo && (
+                  {bumpProtetores && (
                     <div className="mst-total-row">
                       <span>Protetores de panelas</span>
-                      <b>R$ {brl(BUMP_FARDO)}</b>
+                      <b>R$ {brl(BUMP_PROTETORES)}</b>
                     </div>
                   )}
                   <div className="mst-total-final">

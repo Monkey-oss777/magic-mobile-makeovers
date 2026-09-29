@@ -187,5 +187,5 @@ export const SHIPPING = [
   { id: "sedex", name: "Expresso · SEDEX", eta: "2 a 5 dias úteis · com rastreio", cost: 18.94 },
 ] as const;
 
-export const BUMP_COPO = 19.9;
-export const BUMP_FARDO = 9.9;
+export const BUMP_UTENSILIOS = 19.9;
+export const BUMP_PROTETORES = 9.9;

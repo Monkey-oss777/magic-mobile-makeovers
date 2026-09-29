@@ -99,9 +99,9 @@ async function sha256(v: string) {
 
 /** Produto principal do funil — usado nos parâmetros padrão dos eventos. */
 export const TT_CONTENT = {
-  content_id: "copo-monster-115",
+  content_id: "ichef-shark-7-pecas",
   content_type: "product",
-  content_name: "Copo Térmico Monster 1,15L",
+  content_name: "Conjunto iChef Shark 7 peças",
   content_category: "Bebidas / Brindes",
   currency: "BRL",
 };
