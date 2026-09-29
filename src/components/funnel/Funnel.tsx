@@ -191,7 +191,7 @@ export default function Funnel() {
               <span className="mst-lime">grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, um kit de até 3 peças do Conjunto iChef Shark as peças saem por R$ 00,00 — as panelas são sua.
+              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, um kit de até 3 peças do Conjunto iChef Shark saem por R$ 00,00 — as panelas são sua.
             </p>
 
             <div className="mst-hero-ph">
