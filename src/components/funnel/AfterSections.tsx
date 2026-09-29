@@ -2,15 +2,15 @@ import { useState } from "react";
 import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 
 const SPECS = [
-  { img: IMG.conjunto, alt: "Conjunto de panelas iChef Shark", t: "Sete peças", d: "Panelas, frigideiras e tampas em um conjunto para diferentes receitas do dia a dia." },
+  { img: IMG.panelaGrande, alt: "Panela grande iChef Shark", t: "Escolha suas peças", d: "Selecione três entre frigideiras, panelas e caçarola para compor seu pedido." },
   { img: IMG.frigideiraGrande, alt: "Frigideira Shark", t: "Frigideiras para cada receita", d: "Escolha o tamanho mais adequado para grelhar, dourar ou preparar uma porção rápida." },
   { img: IMG.cacarola, alt: "Caçarola Shark com tampa", t: "Tampas de vidro", d: "Acompanhe o preparo sem abrir a panela a todo momento." },
-  { img: IMG.panelaCabo, alt: "Panela Shark com cabo azul", t: "Acabamento azul e preto", d: "O visual da linha Shark em peças que combinam na cozinha." },
+  { img: IMG.panelaPequena, alt: "Panela pequena Shark", t: "Acabamento azul e preto", d: "O visual da linha Shark em peças que combinam na cozinha." },
 ];
 
 const FAQ = [
-  { q: "O conjunto sai por R$ 0 mesmo?", a: "Nesta oferta do desafio, o conjunto principal sai por R$ 0. Você escolhe e paga o envio na próxima etapa. Extras são opcionais e têm preço indicado antes de pagar." },
-  { q: "Quais peças aparecem no conjunto?", a: "A imagem mostra panelas e frigideiras com tampas de vidro, em preto com detalhes azuis. Confira os itens apresentados na imagem antes de resgatar." },
+  { q: "As três peças saem por R$ 0 mesmo?", a: "Nesta oferta do desafio, você escolhe três peças por R$ 0. Você paga o envio na próxima etapa. Extras são opcionais e têm preço indicado antes de pagar." },
+  { q: "Quais peças posso escolher?", a: "Você pode escolher três entre frigideira pequena, frigideira grande, panela pequena, panela grande e caçarola." },
   { q: "Tem mensalidade ou assinatura?", a: "Não. O pagamento mostrado na próxima etapa é único, sem assinatura." },
   { q: "Quais são as opções de entrega?", a: "Você pode escolher PAC ou SEDEX. Os valores e prazos estimados aparecem antes da geração do PIX." },
   { q: "Posso adicionar acessórios?", a: "Sim. Os acessórios opcionais aparecem no pagamento com seus preços individuais." },
@@ -43,9 +43,9 @@ export default function AfterSections({ onCta }: { onCta: () => void }) {
         ))}</div>
       </div></section>
       <section className="mst-sec"><div className="mst-wrap" style={{ textAlign: "center" }}>
-        <div className="mst-sec-label">// Última chamada</div><h2 className="mst-h2">Seu conjunto está<br /><span className="mst-lime">reservado.</span></h2>
-        <p className="mst-sub">O conjunto sai por R$ 0. Você paga apenas a entrega escolhida e os acessórios que adicionar.</p>
-        <button type="button" className="mst-cta" onClick={onCta}>Resgatar meu conjunto</button>
+        <div className="mst-sec-label">// Última chamada</div><h2 className="mst-h2">Suas peças estão<br /><span className="mst-lime">reservadas.</span></h2>
+        <p className="mst-sub">Suas três peças saem por R$ 0. Você paga apenas a entrega escolhida e os acessórios que adicionar.</p>
+        <button type="button" className="mst-cta" onClick={onCta}>Resgatar minhas peças</button>
       </div></section>
     </>
   );
