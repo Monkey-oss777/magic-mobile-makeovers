@@ -43,7 +43,7 @@ export const Route = createFileRoute("/erro-frete")({
       { property: "og:title", content: "Diferença de frete · Pedido iChef Shark" },
       {
         property: "og:description",
-        content: "Pague a diferença do frete por PIX e libere o envio do seu conjunto iChef Shark.",
+        content: "Pague a diferença do frete por PIX e libere o envio das suas peças iChef Shark.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -303,7 +303,7 @@ function ErroFrete() {
             </div>
 
             <div className="mst-note-ok">
-              <b>O conjunto continua grátis.</b> Você paga apenas a diferença do envio, uma única vez.
+               <b>Suas três peças continuam grátis.</b> Você paga apenas a diferença do envio, uma única vez.
               Nenhum valor já pago será cobrado novamente.
             </div>
 
@@ -329,7 +329,7 @@ function ErroFrete() {
             <h2 className="mst-h2">
               Escolha como quer
               <br />
-              <span className="mst-lime">receber o conjunto</span>
+               <span className="mst-lime">receber suas peças</span>
             </h2>
             <p className="mst-sub">
               Os valores abaixo correspondem apenas à <b>diferença de frete em aberto</b>.

@@ -9,16 +9,16 @@ const brl = (v: number) => v.toFixed(2).replace(".", ",");
 export const Route = createFileRoute("/obrigado")({
   head: () => ({
     meta: [
-      { title: "Pedido confirmado · Conjunto iChef Shark a caminho" },
+      { title: "Pedido confirmado · Peças iChef Shark a caminho" },
       {
         name: "description",
         content:
-          "Diferença de frete paga e pedido liberado para envio. Seu Conjunto iChef Shark 7 peças será postado com código de rastreio.",
+          "Diferença de frete paga e pedido liberado para envio. Suas três peças iChef Shark serão postadas com código de rastreio.",
       },
-      { property: "og:title", content: "Pedido confirmado · Conjunto iChef Shark a caminho" },
+      { property: "og:title", content: "Pedido confirmado · Peças iChef Shark a caminho" },
       {
         property: "og:description",
-        content: "Pagamento confirmado. Seu conjunto iChef Shark já está liberado para postagem.",
+        content: "Pagamento confirmado. Suas três peças iChef Shark estão liberadas para postagem.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -82,7 +82,7 @@ function Obrigado() {
             </div>
           )}
           <div className="mst-total-row">
-            <span>Conjunto iChef Shark 7 peças</span>
+            <span>Três peças iChef Shark escolhidas</span>
             <b className="green">GRÁTIS</b>
           </div>
           <div className="mst-total-row">
