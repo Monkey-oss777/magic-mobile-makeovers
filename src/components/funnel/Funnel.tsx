@@ -6,7 +6,6 @@ import { fbPageView, fbParams, fbTrack, fbTrackCustom } from "@/lib/meta";
 import AfterSections from "./AfterSections";
 import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 import { PRIZE_PRODUCTS } from "@/lib/prize-products";
-import { Button } from "@/components/ui/button";
 import Checkout from "./Checkout";
 
 type Screen = "intro" | "quiz" | "analise" | "premio";
@@ -318,10 +317,9 @@ export default function Funnel() {
                   const selected = picks.includes(product.id);
                   const unavailable = picks.length >= 3 && !selected;
                   return (
-                    <Button
+                    <button
                       key={product.id}
                       type="button"
-                      variant="outline"
                       className={"mst-pick-card" + (selected ? " is-on" : "") + (unavailable ? " is-off" : "")}
                       aria-pressed={selected}
                       onClick={() => togglePick(product.id)}
@@ -329,7 +327,7 @@ export default function Funnel() {
                       <span className="mst-pick-img"><img src={product.img} alt="" loading="lazy" /></span>
                       <span className="mst-pick-t">{product.name}</span>
                       <span className="mst-pick-chk" aria-hidden="true">{selected ? "✓" : ""}</span>
-                    </Button>
+                    </button>
                   );
                 })}
               </div>
@@ -358,9 +356,9 @@ export default function Funnel() {
               <b>{holdTxt}</b>
             </div>
 
-            <Button type="button" className="mst-cta" disabled={picks.length !== 3} onClick={openCheckout}>
+            <button type="button" className="mst-cta" disabled={picks.length !== 3} onClick={openCheckout}>
               {picks.length === 3 ? "Resgatar minhas peças" : "Escolha 3 peças"}
-            </Button>
+            </button>
           </div>
         </div>
       </section>
