@@ -5,6 +5,8 @@ import { ttPageView, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbPageView, fbParams, fbTrack, fbTrackCustom } from "@/lib/meta";
 import AfterSections from "./AfterSections";
 import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
+import { PRIZE_PRODUCTS } from "@/lib/prize-products";
+import { Button } from "@/components/ui/button";
 import Checkout from "./Checkout";
 
 type Screen = "intro" | "quiz" | "analise" | "premio";
@@ -19,6 +21,7 @@ export default function Funnel() {
   const [doneSteps, setDoneSteps] = useState(0);
   const [hold, setHold] = useState(600);
   const [checkout, setCheckout] = useState(false);
+  const [picks, setPicks] = useState<string[]>([]);
   const answers = useRef<{ pergunta: string; resposta: string }[]>([]);
   const timers = useRef<number[]>([]);
 
@@ -110,10 +113,20 @@ export default function Funnel() {
   }
 
   function openCheckout() {
-    track("checkout_click", variant);
+    if (picks.length !== 3) {
+      document.getElementById("mst-escolha")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    track("checkout_click", variant, { picks: picks.join(",") });
     ttTrack("AddToCart", ttParams(0, { content_name: "Resgatar prêmio" }));
     fbTrack("AddToCart", fbParams(0, { content_name: "Resgatar prêmio" }));
     setCheckout(true);
+  }
+
+  function togglePick(id: string) {
+    setPicks((current) => current.includes(id)
+      ? current.filter((pick) => pick !== id)
+      : current.length < 3 ? [...current, id] : current);
   }
 
   function renderOption(op: QuizOption, i: number) {
@@ -160,7 +173,7 @@ export default function Funnel() {
     <div className="mst">
       <header className="mst-top">
         <div className="mst-top-in">
-          <span>Desafio iChef · Conjunto Shark 7 peças</span>
+          <span>Desafio iChef · Escolha 3 peças Shark</span>
         </div>
         <div className="mst-top-bar" style={{ width: `${progress}%` }} />
       </header>
@@ -174,7 +187,7 @@ export default function Funnel() {
             <h1 className="mst-h1">
               Responda tudo
               <br />
-              e ganhe o conjunto
+              e escolha 3 peças
               <br />
               <span className="mst-lime">grátis</span>
             </h1>
@@ -185,7 +198,7 @@ export default function Funnel() {
             <div className="mst-hero-ph">
               <img
                 src={IMG.conjunto}
-                alt="Conjunto iChef Shark 7 peças"
+                alt="Peças da linha iChef Shark"
               />
               <span className="mst-tag">R$ 0,00</span>
             </div>
@@ -199,7 +212,7 @@ export default function Funnel() {
               <i>/</i>
               <span>1 minuto</span>
               <i>/</i>
-              <span>conjunto grátis</span>
+              <span>3 peças grátis</span>
             </div>
           </div>
 
@@ -277,7 +290,7 @@ export default function Funnel() {
             <h2 className="mst-h1">
               Você ganhou
               <br />
-              o conjunto Shark
+              3 peças Shark
               <br />
               <span className="mst-lime">grátis</span>
             </h2>
@@ -285,22 +298,49 @@ export default function Funnel() {
             <div className="mst-palco">
               <img
                 src={IMG.conjunto}
-                alt="Conjunto iChef Shark 7 peças liberado no desafio"
+                alt="Peças da linha iChef Shark para escolher"
               />
               <div className="mst-selo">
-                <span>7 peças</span>
+                <span>3 peças</span>
                 <b>R$ 0</b>
               </div>
             </div>
 
             <div className="mst-prize-name">
-              Conjunto iChef Shark 7 peças
-              <span>panelas e frigideiras com tampas de vidro</span>
+              Escolha 3 peças iChef Shark
+              <span>Selecione três modelos entre as cinco opções disponíveis.</span>
+            </div>
+
+            <div className="mst-pick" id="mst-escolha">
+              <div className="mst-kicker">Escolha suas 3 peças</div>
+              <div className="mst-pick-grid">
+                {PRIZE_PRODUCTS.map((product) => {
+                  const selected = picks.includes(product.id);
+                  const unavailable = picks.length >= 3 && !selected;
+                  return (
+                    <Button
+                      key={product.id}
+                      type="button"
+                      variant="outline"
+                      className={"mst-pick-card" + (selected ? " is-on" : "") + (unavailable ? " is-off" : "")}
+                      aria-pressed={selected}
+                      onClick={() => togglePick(product.id)}
+                    >
+                      <span className="mst-pick-img"><img src={product.img} alt="" loading="lazy" /></span>
+                      <span className="mst-pick-t">{product.name}</span>
+                      <span className="mst-pick-chk" aria-hidden="true">{selected ? "✓" : ""}</span>
+                    </Button>
+                  );
+                })}
+              </div>
+              <p className="mst-pick-hint" aria-live="polite">
+                {picks.length === 3 ? "Seleção concluída — suas três peças estão prontas." : `Selecione mais ${3 - picks.length} peça${3 - picks.length === 1 ? "" : "s"} para continuar.`}
+              </p>
             </div>
 
             <ul className="mst-mini">
               <li>
-                <b>7</b>
+                <b>3</b>
                 <span>peças</span>
               </li>
               <li>
@@ -318,16 +358,16 @@ export default function Funnel() {
               <b>{holdTxt}</b>
             </div>
 
-            <button type="button" className="mst-cta" onClick={openCheckout}>
-              Resgatar meu conjunto
-            </button>
+            <Button type="button" className="mst-cta" disabled={picks.length !== 3} onClick={openCheckout}>
+              {picks.length === 3 ? "Resgatar minhas peças" : "Escolha 3 peças"}
+            </Button>
           </div>
         </div>
       </section>
 
       {screen === "premio" && <AfterSections onCta={openCheckout} />}
 
-      {checkout && <Checkout variant={variant} onClose={() => setCheckout(false)} />}
+      {checkout && <Checkout variant={variant} picks={picks} onClose={() => setCheckout(false)} />}
     </div>
   );
 }
