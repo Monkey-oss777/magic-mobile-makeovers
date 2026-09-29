@@ -394,7 +394,7 @@ export default function Checkout({ variant, onClose }: Props) {
           <>
             <div className="mst-kicker">Último passo</div>
             <h2 className="mst-h2">
-              Pague só o envio
+              Finalize seu pedido
               <br />e leve o seu <span className="mst-lime">conjunto grátis</span>
             </h2>
             <p className="mst-sub">

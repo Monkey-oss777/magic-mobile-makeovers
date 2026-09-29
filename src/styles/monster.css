@@ -4,12 +4,12 @@
    ============================================================ */
 
 :root {
-  --mst-bg: #05060a;
-  --mst-bg-2: #0a0d12;
-  --mst-panel: #10131a;
-  --mst-panel-2: #161a22;
-  --mst-ink: #f4f7ef;
-  --mst-mut: #9aa392;
+  --mst-bg: #0b1018;
+  --mst-bg-2: #101925;
+  --mst-panel: #142131;
+  --mst-panel-2: #1a293c;
+  --mst-ink: #f2f6fc;
+  --mst-mut: #a4b4c5;
   --mst-lime: #4d9ff5;
   --mst-lime-dark: #246bb9;
   --mst-line: rgba(255, 255, 255, 0.1);

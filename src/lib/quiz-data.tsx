@@ -100,20 +100,20 @@ export const ICO = {
       <line x1="10" y1="30" x2="30" y2="10" />
     </>,
   ),
-  copoP: svg(
+  porcaoP: svg(
     <>
       <path d="M15 14h10l-1.4 18a2 2 0 0 1-2 1.8h-3.2a2 2 0 0 1-2-1.8z" />
       <line x1="14" y1="14" x2="26" y2="14" />
     </>,
   ),
-  copoM: svg(
+  porcaoM: svg(
     <>
       <path d="M13 10h14l-1.7 22.2a2 2 0 0 1-2 1.8h-6.6a2 2 0 0 1-2-1.8z" />
       <line x1="12" y1="10" x2="28" y2="10" />
       <line x1="14" y1="20" x2="26" y2="20" />
     </>,
   ),
-  copoG: svg(
+  porcaoG: svg(
     <>
       <path d="M11 7h18l-2 26.2a2 2 0 0 1-2 1.8H15a2 2 0 0 1-2-1.8z" />
       <line x1="10" y1="7" x2="30" y2="7" />
@@ -151,8 +151,8 @@ export const QUESTIONS: QuizQuestion[] = [
     { t: "No preparo da semana", icon: ICO.mesa }, { t: "No fim de semana", icon: ICO.cafe },
   ] },
   { k: "FREQUÊNCIA", kind: "arte", p: "Quantas vezes ao dia você cozinha e usa panelas?", o: [
-    { t: "1 vez", icon: ICO.copoP }, { t: "2 vezes", icon: ICO.copoM },
-    { t: "3 vezes", icon: ICO.copoG }, { t: "Mais de 3 vezes", icon: ICO.infinito },
+    { t: "1 vez", icon: ICO.porcaoP }, { t: "2 vezes", icon: ICO.porcaoM },
+    { t: "3 vezes", icon: ICO.porcaoG }, { t: "Mais de 3 vezes", icon: ICO.infinito },
   ] },
   { k: "SUA PANELA", kind: "sabor", p: "Qual tipo de panela você mais usa?", o: [
     { t: "Frigideira pequena", img: IMG.frigideiraPequena },
@@ -173,8 +173,8 @@ export const QUESTIONS: QuizQuestion[] = [
     { t: "Nunca", s: "prefiro manter assim", icon: ICO.nao, tone: "no" },
   ] },
   { k: "TAMANHO", kind: "arte", p: "Para quantas pessoas você costuma cozinhar?", o: [
-    { t: "Só para mim", icon: ICO.copoP }, { t: "2 pessoas", icon: ICO.copoM },
-    { t: "3 a 4 pessoas", icon: ICO.copoG }, { t: "5 ou mais", icon: ICO.infinito },
+    { t: "Só para mim", icon: ICO.porcaoP }, { t: "2 pessoas", icon: ICO.porcaoM },
+    { t: "3 a 4 pessoas", icon: ICO.porcaoG }, { t: "5 ou mais", icon: ICO.infinito },
   ] },
   { k: "ÚLTIMA", kind: "arte", p: "Qual receita você faria primeiro com o conjunto?", o: [
     { t: "Omelete", icon: ICO.sol }, { t: "Arroz e feijão", icon: ICO.mesa },
