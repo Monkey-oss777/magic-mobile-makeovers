@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
+import { createHmac, randomUUID } from "node:crypto";
 
 
 const CACOFY_URL = "https://app.cacofy.com/api/external_api.php";
@@ -42,12 +43,15 @@ const createSchema = z.object({
     .default({}),
 });
 
-function webhookUrl() {
+function webhookUrl(orderId: string) {
+  const signingKey = process.env["PIX_WEBHOOK_SIGNING_KEY"];
+  if (!signingKey) throw new Error("PIX_WEBHOOK_SIGNING_KEY não configurada");
+  const signature = createHmac("sha256", signingKey).update(orderId).digest("hex");
   const siteUrl = process.env["PUBLIC_SITE_URL"];
-  if (siteUrl && siteUrl.startsWith("https://")) return `${siteUrl.replace(/\/$/, "")}/api/public/pix-webhook`;
+  if (siteUrl && siteUrl.startsWith("https://")) return `${siteUrl.replace(/\/$/, "")}/api/public/pix-webhook?order=${encodeURIComponent(orderId)}&sig=${signature}`;
   try {
     const origin = new URL(getRequest().url).origin;
-    if (origin.startsWith("https://")) return `${origin}/api/public/pix-webhook`;
+    if (origin.startsWith("https://")) return `${origin}/api/public/pix-webhook?order=${encodeURIComponent(orderId)}&sig=${signature}`;
   } catch {
     /* sem request disponível */
   }
@@ -68,12 +72,18 @@ export const createPixCharge = createServerFn({ method: "POST" })
     const apiKey = process.env["CACOFY_API_KEY"];
     if (!apiKey) return { ok: false as const, error: "Pagamento indisponível no momento." };
 
-    const orderId = `MST-${Date.now().toString(36).toUpperCase()}-${Math.floor(
-      Math.random() * 900 + 100,
-    )}`;
+    let callbackUrl: string;
+    try {
+      // Resolva antes de registrar a cobrança: não crie um pedido sem retorno autenticado.
+      callbackUrl = webhookUrl(`MST-${randomUUID()}`);
+    } catch {
+      return { ok: false as const, error: "Pagamento indisponível no momento." };
+    }
+    const orderId = new URL(callbackUrl).searchParams.get("order");
+    if (!orderId) return { ok: false as const, error: "Pagamento indisponível no momento." };
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    await supabaseAdmin.from("pix_orders").insert({
+    const { error: insertError } = await supabaseAdmin.from("pix_orders").insert({
       order_id: orderId,
       product_name: data.productName,
       amount: data.amount,
@@ -95,6 +105,10 @@ export const createPixCharge = createServerFn({ method: "POST" })
       tt_user_agent: reqHeader("user-agent"),
       tt_ip: reqHeader("cf-connecting-ip") ?? reqHeader("x-forwarded-for")?.split(",")[0]?.trim() ?? null,
     });
+    if (insertError) {
+      console.error("pix order insert failed", insertError.message);
+      return { ok: false as const, error: "Não foi possível iniciar o pagamento. Tente novamente." };
+    }
 
     let res: Response;
     try {
@@ -105,7 +119,7 @@ export const createPixCharge = createServerFn({ method: "POST" })
           product_name: data.productName,
           amount: data.amount,
           order_id: orderId,
-          webhook_url: webhookUrl(),
+          webhook_url: callbackUrl,
           customer: {
             name: data.customer.name,
             email: data.customer.email,
@@ -149,13 +163,14 @@ export const createPixCharge = createServerFn({ method: "POST" })
       };
     }
 
-    await supabaseAdmin
+    const { error: updateError } = await supabaseAdmin
       .from("pix_orders")
       .update({
         transaction_id: body.transaction_id ?? null,
-        status: body.status ?? "pending",
+        // O retorno pode chegar antes da resposta de criação; não rebaixe uma aprovação.
       })
       .eq("order_id", orderId);
+    if (updateError) console.error("pix transaction update failed", updateError.message);
 
     return {
       ok: true as const,
