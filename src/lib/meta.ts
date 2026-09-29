@@ -49,8 +49,8 @@ export function getMetaAttribution(): MetaAttribution {
 
 /** Produto principal do funil — parâmetros padrão dos eventos. */
 export const FB_CONTENT = {
-  content_ids: ["ichef-shark-7-pecas"],
-  content_name: "Conjunto iChef Shark 7 peças",
+  content_ids: ["ichef-shark-3-pecas"],
+  content_name: "3 peças iChef Shark",
   content_type: "product",
   content_category: "Casa / Cozinha",
   currency: "BRL",
