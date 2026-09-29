@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { getOrderSummary } from "@/lib/order.functions";
+import { PRIZE_PRODUCTS } from "@/lib/prize-products";
 
 const brl = (v: number) => v.toFixed(2).replace(".", ",");
 
@@ -36,6 +37,7 @@ function Obrigado() {
   const { order, base, ship } = Route.useSearch();
   const buscar = useServerFn(getOrderSummary);
   const [dados, setDados] = useState<Awaited<ReturnType<typeof getOrderSummary>> | null>(null);
+  const [pedidoOriginal, setPedidoOriginal] = useState<Awaited<ReturnType<typeof getOrderSummary>> | null>(null);
 
   useEffect(() => {
     if (!order) return;
@@ -44,9 +46,19 @@ function Obrigado() {
       .catch(() => setDados(null));
   }, [order, buscar]);
 
+  useEffect(() => {
+    if (!base) return;
+    void buscar({ data: { orderId: base } })
+      .then(setPedidoOriginal)
+      .catch(() => setPedidoOriginal(null));
+  }, [base, buscar]);
+
   const info = dados?.ok ? dados : null;
   const s = info?.shipping;
   const prazo = ship === "sedex" ? "2 a 5 dias úteis" : "7 a 12 dias úteis";
+  const selectedPieces = pedidoOriginal?.ok
+    ? pedidoOriginal.items.filter((item) => PRIZE_PRODUCTS.some((piece) => piece.name === item.nome))
+    : [];
 
   return (
     <main className="mst-co" role="main">
@@ -81,10 +93,17 @@ function Obrigado() {
               <b>#{base}</b>
             </div>
           )}
-          <div className="mst-total-row">
-            <span>Três peças iChef Shark escolhidas</span>
-            <b className="green">GRÁTIS</b>
-          </div>
+          {selectedPieces.length > 0 ? selectedPieces.map((item) => (
+            <div className="mst-total-row" key={item.nome}>
+              <span>{item.nome}</span>
+              <b className="green">GRÁTIS</b>
+            </div>
+          )) : (
+            <div className="mst-total-row">
+              <span>Três peças iChef Shark escolhidas</span>
+              <b className="green">GRÁTIS</b>
+            </div>
+          )}
           <div className="mst-total-row">
             <span>Envio {ship.toUpperCase()}</span>
             <b>{prazo}</b>
