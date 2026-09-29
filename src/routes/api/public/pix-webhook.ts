@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createHmac, timingSafeEqual } from "node:crypto";
+import { z } from "zod";
 
-type WebhookBody = {
-  event?: string;
-  data?: {
-    transacao_id?: string;
-    status_pagamento?: string;
-    order_id?: string;
-  };
-  order_id?: string;
-};
+const webhookSchema = z.object({
+  event: z.string().max(40).optional(),
+  data: z.object({
+    transacao_id: z.string().max(150).optional(),
+    status_pagamento: z.string().max(40).optional(),
+    order_id: z.string().max(80).optional(),
+  }).optional(),
+  order_id: z.string().max(80).optional(),
+}).passthrough();
 
 const STATUS_MAP: Record<string, string> = {
   pending: "pending",
@@ -24,44 +26,59 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        let body: WebhookBody | null = null;
+        const url = new URL(request.url);
+        const orderId = url.searchParams.get("order");
+        const signature = url.searchParams.get("sig");
+        const signingKey = process.env["PIX_WEBHOOK_SIGNING_KEY"];
+        if (!signingKey || !orderId || !/^MST-[0-9a-f-]{36}$/.test(orderId) || !signature || !/^[0-9a-f]{64}$/.test(signature)) {
+          return new Response("unauthorized", { status: 401 });
+        }
+        const expected = createHmac("sha256", signingKey).update(orderId).digest("hex");
+        if (!timingSafeEqual(Buffer.from(signature, "hex"), Buffer.from(expected, "hex"))) {
+          return new Response("unauthorized", { status: 401 });
+        }
+
+        let body: z.infer<typeof webhookSchema>;
         try {
-          body = (await request.json()) as WebhookBody;
+          body = webhookSchema.parse(await request.json());
         } catch {
           return new Response("invalid json", { status: 400 });
         }
 
         const event = (body?.event ?? body?.data?.status_pagamento ?? "").toLowerCase();
-        const status = STATUS_MAP[event] ?? "pending";
+        const status = STATUS_MAP[event];
         const transactionId = body?.data?.transacao_id;
-        const orderId = body?.order_id ?? body?.data?.order_id;
-
-        if (!transactionId && !orderId) {
-          return new Response("missing identifier", { status: 400 });
+        if (!status || (body.order_id && body.order_id !== orderId) || (body.data?.order_id && body.data.order_id !== orderId)) {
+          return new Response("invalid event", { status: 400 });
         }
 
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        const { data: current, error: lookupError } = await supabaseAdmin.from("pix_orders")
+          .select("status, transaction_id, paid_at").eq("order_id", orderId).maybeSingle();
+        if (lookupError) return new Response("retry", { status: 500 });
+        if (!current) return new Response("unknown order", { status: 404 });
+        if (transactionId && current.transaction_id && current.transaction_id !== transactionId) {
+          return new Response("invalid transaction", { status: 400 });
+        }
+        // Evite rebaixar uma compra já aprovada por notificações atrasadas.
+        const effectiveStatus = current.status === "approved" && status !== "refunded" && status !== "chargeback" ? "approved" : status;
         const patch = {
-          status,
-          last_webhook: body as unknown as Record<string, never>,
-          ...(status === "approved" ? { paid_at: new Date().toISOString() } : {}),
+          status: effectiveStatus,
+          last_webhook: body,
+          ...(transactionId && !current.transaction_id ? { transaction_id: transactionId } : {}),
+          ...(effectiveStatus === "approved" && !current.paid_at ? { paid_at: new Date().toISOString() } : {}),
         };
 
-
-        let query = supabaseAdmin.from("pix_orders").update(patch).select("*");
-        query = orderId
-          ? query.eq("order_id", orderId)
-          : query.eq("transaction_id", transactionId!);
-        const { data: rows, error } = await query;
+        const { data: rows, error } = await supabaseAdmin.from("pix_orders").update(patch).eq("order_id", orderId).select("*");
 
         if (error) {
           console.error("pix webhook update failed", error.message);
-          return new Response("ok", { status: 200 });
+          return new Response("retry", { status: 500 });
         }
 
         // Conversão server-side no TikTok, só quando o pagamento é aprovado.
         const order = rows?.[0];
-        if (status === "approved" && order && !order.tt_sent_at) {
+        if (effectiveStatus === "approved" && order && !order.tt_sent_at) {
           const { sendTikTokEvent } = await import("@/lib/tiktok.server");
           const items = Array.isArray(order.items)
             ? (order.items as { nome?: string; valor?: number }[])
@@ -90,7 +107,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
         }
 
         // Conversões server-side nos dois Pixels da Meta, com controle independente.
-        if (status === "approved" && order && (!order.fb_sent_at || !order.fb2_sent_at)) {
+        if (effectiveStatus === "approved" && order && (!order.fb_sent_at || !order.fb2_sent_at)) {
           const { sendMetaEvent } = await import("@/lib/meta.server");
           const ship = (order.shipping ?? {}) as {
             cep?: string;
@@ -140,7 +157,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
         }
 
         // Pixels adicionais cadastrados no painel, com deduplicação individual.
-        if (status === "approved" && order) {
+        if (effectiveStatus === "approved" && order) {
           const { sendManagedMetaEvents } = await import("@/lib/meta.server");
           const ship = (order.shipping ?? {}) as { cep?: string; cidade?: string; uf?: string };
           await sendManagedMetaEvents(order.order_id, {
@@ -162,7 +179,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
         }
 
         // Envio da venda paga para o painel da Utmify.
-        if (status === "approved" && order && !order.utmify_sent_at) {
+        if (effectiveStatus === "approved" && order && !order.utmify_sent_at) {
           const { sendUtmifyOrder } = await import("@/lib/utmify.server");
           const sent = await sendUtmifyOrder({
             orderId: order.order_id,
