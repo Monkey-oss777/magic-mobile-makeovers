@@ -87,7 +87,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
             eventId: order.tt_event_id ?? order.order_id,
             value: Number(order.amount ?? 0),
             contents: [
-              { content_name: order.product_name ?? "Copo Monster", price: Number(order.amount ?? 0), quantity: 1 },
+              { content_name: order.product_name ?? "Conjunto iChef Shark", price: Number(order.amount ?? 0), quantity: 1 },
               ...items.map((i) => ({ content_name: i.nome, price: i.valor, quantity: 1 })),
             ],
             email: order.customer_email,
@@ -119,7 +119,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
             value: Number(order.amount ?? 0),
             contents: [
               {
-                id: "copo-monster-115",
+                id: "ichef-shark-7-pecas",
                 quantity: 1,
                 item_price: Number(order.amount ?? 0),
               },
@@ -163,7 +163,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
           await sendManagedMetaEvents(order.order_id, {
             eventId: order.fb_event_id ?? order.order_id,
             value: Number(order.amount ?? 0),
-            contents: [{ id: "copo-monster-115", quantity: 1, item_price: Number(order.amount ?? 0) }],
+            contents: [{ id: "ichef-shark-7-pecas", quantity: 1, item_price: Number(order.amount ?? 0) }],
             email: order.customer_email,
             phone: order.customer_phone,
             firstName: order.customer_name,
@@ -184,7 +184,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
           const sent = await sendUtmifyOrder({
             orderId: order.order_id,
             amount: Number(order.amount ?? 0),
-            productName: order.product_name ?? "Copo Monster",
+            productName: order.product_name ?? "Conjunto iChef Shark",
             customerName: order.customer_name,
             customerEmail: order.customer_email,
             customerPhone: order.customer_phone,

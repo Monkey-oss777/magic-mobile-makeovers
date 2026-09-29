@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useNavigate } from "@tanstack/react-router";
-import { BUMP_COPO, BUMP_FARDO, SHIPPING } from "@/lib/quiz-data";
+import { BUMP_UTENSILIOS, BUMP_PROTETORES, SHIPPING } from "@/lib/quiz-data";
 import { getTikTokAttribution, ttIdentify, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbIdentify, fbParams, fbTrack, getMetaAttribution } from "@/lib/meta";
 import { createPixCharge, getPixStatus } from "@/lib/pix.functions";
 import { track, type PayVariant } from "@/lib/ab";
+import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 
 
 const brl = (v: number) => v.toFixed(2).replace(".", ",");
@@ -47,8 +48,8 @@ export default function Checkout({ variant, onClose }: Props) {
   const [step, setStep] = useState<Step>(1);
   const [err, setErr] = useState("");
   const [ship, setShip] = useState<string>(SHIPPING[0].id);
-  const [bumpCopo, setBumpCopo] = useState(false);
-  const [bumpFardo, setBumpFardo] = useState(false);
+  const [bumpUtensilios, setBumpUtensilios] = useState(false);
+  const [bumpProtetores, setBumpProtetores] = useState(false);
   const [paying, setPaying] = useState(false);
   const [pixReady, setPixReady] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -83,8 +84,8 @@ export default function Checkout({ variant, onClose }: Props) {
   }, []);
 
   const total = useMemo(
-    () => shipOpt.cost + (bumpCopo ? BUMP_COPO : 0) + (bumpFardo ? BUMP_FARDO : 0),
-    [shipOpt.cost, bumpCopo, bumpFardo],
+    () => shipOpt.cost + (bumpUtensilios ? BUMP_UTENSILIOS : 0) + (bumpProtetores ? BUMP_PROTETORES : 0),
+    [shipOpt.cost, bumpUtensilios, bumpProtetores],
   );
 
   const [pedido, setPedido] = useState("");
@@ -176,13 +177,13 @@ export default function Checkout({ variant, onClose }: Props) {
       try {
         const itens = [
           { nome: `Envio rastreado ${shipOpt.id.toUpperCase()}`, valor: shipOpt.cost },
-          ...(bumpCopo ? [{ nome: "+1 Copo Monster 1,15L", valor: BUMP_COPO }] : []),
-          ...(bumpFardo ? [{ nome: "Fardo Monster 6x473ml", valor: BUMP_FARDO }] : []),
+          ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (3 peças)", valor: BUMP_UTENSILIOS }] : []),
+          ...(bumpProtetores ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_PROTETORES }] : []),
         ];
         const r = await criarPix({
           data: {
             amount: Number(total.toFixed(2)),
-            productName: "Copo Térmico Monster 1,15L - entrega",
+            productName: "Conjunto iChef Shark 7 peças - entrega",
             items: itens,
             variant,
             customer: {
@@ -382,8 +383,8 @@ export default function Checkout({ variant, onClose }: Props) {
           </svg>
         </button>
         <span className="mst-co-brand">
-          <img src="/copo-quiz/assets/monster-logo.png" alt="Monster" />
-          <span>Monster Drinkware</span>
+          <img src={IMG.conjunto} alt="iChef Shark" />
+          <span>iChef Shark Series</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>
       </div>
@@ -393,12 +394,11 @@ export default function Checkout({ variant, onClose }: Props) {
           <>
             <div className="mst-kicker">Último passo</div>
             <h2 className="mst-h2">
-              Pague só o envio
-              <br />e leve o seu <span className="mst-lime">copo grátis</span>
+              Finalize seu pedido
+              <br />e leve o seu <span className="mst-lime">conjunto grátis</span>
             </h2>
             <p className="mst-sub">
-              O copo custa R$ 0,00. O total abaixo corresponde somente à entrega que você
-              escolheu.
+              O conjunto custa R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
             </p>
 
             <div className="mst-totals">
@@ -407,23 +407,23 @@ export default function Checkout({ variant, onClose }: Props) {
                 <b>#{pedido}</b>
               </div>
               <div className="mst-total-row">
-                <span>Copo Monster 1,15L + chaveiro</span>
+                <span>Conjunto iChef Shark 7 peças</span>
                 <b className="green">GRÁTIS</b>
               </div>
               <div className="mst-total-row">
                 <span>Envio rastreado ({shipOpt.id.toUpperCase()})</span>
                 <b>R$ {brl(shipOpt.cost)}</b>
               </div>
-              {bumpCopo && (
+              {bumpUtensilios && (
                 <div className="mst-total-row">
-                  <span>+1 copo Monster</span>
-                  <b>R$ {brl(BUMP_COPO)}</b>
+                  <span>Utensílios de silicone</span>
+                  <b>R$ {brl(BUMP_UTENSILIOS)}</b>
                 </div>
               )}
-              {bumpFardo && (
+              {bumpProtetores && (
                 <div className="mst-total-row">
-                  <span>Fardo Monster 6x473ml</span>
-                  <b>R$ {brl(BUMP_FARDO)}</b>
+                  <span>Protetores de panelas</span>
+                  <b>R$ {brl(BUMP_PROTETORES)}</b>
                 </div>
               )}
               <div className="mst-total-final">
@@ -495,7 +495,7 @@ export default function Checkout({ variant, onClose }: Props) {
                   <span className="mst-lime">de resgate</span>
                 </h2>
                 <p className="mst-sub">
-                  Seu copo foi liberado por <b>R$ 0</b> — complete os dados para seguir.
+                  Seu conjunto foi liberado por <b>R$ 0</b> — complete os dados para seguir.
                 </p>
                 <div className="mst-field">
                   <label htmlFor="co-nome">Nome completo</label>
@@ -550,7 +550,7 @@ export default function Checkout({ variant, onClose }: Props) {
                 <h2 className="mst-h2">
                   Onde entregar
                   <br />
-                  <span className="mst-lime">o seu copo</span>
+                  <span className="mst-lime">o seu conjunto</span>
                 </h2>
 
                 <div className="mst-kicker" style={{ margin: "0 0 8px" }}>
@@ -563,7 +563,7 @@ export default function Checkout({ variant, onClose }: Props) {
                     <circle cx="17.5" cy="18" r="1.8" />
                   </svg>
                   <span>
-                    <b>O prêmio é grátis, você paga somente a entrega.</b> Todos os envios seguem
+                    <b>O conjunto é grátis; acessórios opcionais são cobrados à parte. Você paga a entrega.</b> Todos os envios seguem
                     em <b>caixa reforçada</b>, com proteção contra avarias e{" "}
                     <b>código de rastreamento</b>.
                   </span>
@@ -683,23 +683,23 @@ export default function Checkout({ variant, onClose }: Props) {
                 <h2 className="mst-h2">
                   Pagamento
                   <br />
-                  <span className="mst-lime">só do envio</span>
+                  <span className="mst-lime">do seu resgate</span>
                 </h2>
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpCopo ? " is-on" : "")}
-                  onClick={() => setBumpCopo((v) => !v)}
+                  className={"mst-bump" + (bumpUtensilios ? " is-on" : "")}
+                  onClick={() => setBumpUtensilios((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
-                    <img src="/copo-quiz/assets/copo-frente.png" alt="" loading="lazy" />
+                    <img src={IMG.utensilios} alt="Kit de utensílios de silicone" loading="lazy" />
                   </span>
                   <span>
-                    <span className="mst-bump-t">Leva +1 copo Monster</span>
-                    <span className="mst-bump-d">Vai na mesma caixa, sem frete extra</span>
+                    <span className="mst-bump-t">Kit de utensílios de silicone</span>
+                    <span className="mst-bump-d">3 utensílios para cozinhar e servir</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_COPO)}
+                    R$ {brl(BUMP_UTENSILIOS)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -710,18 +710,18 @@ export default function Checkout({ variant, onClose }: Props) {
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpFardo ? " is-on" : "")}
-                  onClick={() => setBumpFardo((v) => !v)}
+                  className={"mst-bump" + (bumpProtetores ? " is-on" : "")}
+                  onClick={() => setBumpProtetores((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
-                    <img src="/copo-quiz/assets/fardo-monster.jpg" alt="" loading="lazy" />
+                    <img src={IMG.protetores} alt="Kit de protetores de panelas" loading="lazy" />
                   </span>
                   <span>
-                    <span className="mst-bump-t">Fardo Monster 6x473ml</span>
-                    <span className="mst-bump-d">Para estrear o copo já gelado</span>
+                    <span className="mst-bump-t">Protetores de panelas</span>
+                    <span className="mst-bump-d">3 separadores para guardar as peças</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_FARDO)}
+                    R$ {brl(BUMP_PROTETORES)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -732,25 +732,25 @@ export default function Checkout({ variant, onClose }: Props) {
 
                 <div className="mst-totals">
                   <div className="mst-total-row">
-                    <span>Copo Monster 1,15L + chaveiro</span>
+                    <span>Conjunto iChef Shark 7 peças</span>
                     <b className="green">
-                      <s style={{ opacity: 0.6, marginRight: 6 }}>R$ 197,00</s>GRÁTIS
+                      GRÁTIS
                     </b>
                   </div>
                   <div className="mst-total-row">
                     <span>Frete ({shipOpt.id.toUpperCase()})</span>
                     <b>R$ {brl(shipOpt.cost)}</b>
                   </div>
-                  {bumpCopo && (
+                  {bumpUtensilios && (
                     <div className="mst-total-row">
-                      <span>+1 copo Monster</span>
-                      <b>R$ {brl(BUMP_COPO)}</b>
+                      <span>Utensílios de silicone</span>
+                      <b>R$ {brl(BUMP_UTENSILIOS)}</b>
                     </div>
                   )}
-                  {bumpFardo && (
+                  {bumpProtetores && (
                     <div className="mst-total-row">
-                      <span>Fardo Monster 6x473ml</span>
-                      <b>R$ {brl(BUMP_FARDO)}</b>
+                      <span>Protetores de panelas</span>
+                      <b>R$ {brl(BUMP_PROTETORES)}</b>
                     </div>
                   )}
                   <div className="mst-total-final">
@@ -883,8 +883,8 @@ export default function Checkout({ variant, onClose }: Props) {
             {err && <div className="mst-err">{err}</div>}
 
             <p className="mst-company">
-              <strong>Monster Energy Brasil Comércio de Bebidas Ltda.</strong>
-              CNPJ 10.905.379/0001-32
+              <strong>Oferta iChef Shark</strong>
+              Confira os detalhes do pedido antes de pagar.
             </p>
           </>
         )}
@@ -899,7 +899,7 @@ export default function Checkout({ variant, onClose }: Props) {
             </div>
             <div className="mst-bar-act">
               <span className="mst-bar-tot">
-                <span>{step === 3 ? "Total" : "Seu copo"}</span>
+                <span>{step === 3 ? "Total" : "Seu conjunto"}</span>
                 <b>{step === 3 ? `R$ ${brl(total)}` : "GRÁTIS"}</b>
               </span>
               <button

@@ -1,3 +1,4 @@
+import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,16 +9,16 @@ const brl = (v: number) => v.toFixed(2).replace(".", ",");
 export const Route = createFileRoute("/obrigado")({
   head: () => ({
     meta: [
-      { title: "Pedido confirmado · Copo Monster a caminho" },
+      { title: "Pedido confirmado · Conjunto iChef Shark a caminho" },
       {
         name: "description",
         content:
-          "Diferença de frete paga e pedido liberado para envio. Seu Copo Térmico Monster 1,15L será postado com código de rastreio.",
+          "Diferença de frete paga e pedido liberado para envio. Seu Conjunto iChef Shark 7 peças será postado com código de rastreio.",
       },
-      { property: "og:title", content: "Pedido confirmado · Copo Monster a caminho" },
+      { property: "og:title", content: "Pedido confirmado · Conjunto iChef Shark a caminho" },
       {
         property: "og:description",
-        content: "Pagamento confirmado. Seu copo Monster já está liberado para postagem.",
+        content: "Pagamento confirmado. Seu conjunto iChef Shark já está liberado para postagem.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -51,8 +52,8 @@ function Obrigado() {
     <main className="mst-co" role="main">
       <div className="mst-co-head">
         <span className="mst-co-brand">
-          <img src="/copo-quiz/assets/monster-logo.png" alt="Monster" />
-          <span>Monster Drinkware</span>
+          <img src={IMG.conjunto} alt="iChef Shark" />
+          <span>iChef Shark Series</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>
       </div>
@@ -81,7 +82,7 @@ function Obrigado() {
             </div>
           )}
           <div className="mst-total-row">
-            <span>Copo Monster 1,15L + chaveiro</span>
+            <span>Conjunto iChef Shark 7 peças</span>
             <b className="green">GRÁTIS</b>
           </div>
           <div className="mst-total-row">
@@ -120,8 +121,8 @@ function Obrigado() {
         </Link>
 
         <p className="mst-company">
-          <strong>Monster Energy Brasil Comércio de Bebidas Ltda.</strong>
-          CNPJ 10.905.379/0001-32
+          <strong>Oferta iChef Shark</strong>
+          Guarde o número do pedido.
         </p>
       </div>
     </main>

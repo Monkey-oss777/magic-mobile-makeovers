@@ -100,20 +100,20 @@ export const ICO = {
       <line x1="10" y1="30" x2="30" y2="10" />
     </>,
   ),
-  copoP: svg(
+  porcaoP: svg(
     <>
       <path d="M15 14h10l-1.4 18a2 2 0 0 1-2 1.8h-3.2a2 2 0 0 1-2-1.8z" />
       <line x1="14" y1="14" x2="26" y2="14" />
     </>,
   ),
-  copoM: svg(
+  porcaoM: svg(
     <>
       <path d="M13 10h14l-1.7 22.2a2 2 0 0 1-2 1.8h-6.6a2 2 0 0 1-2-1.8z" />
       <line x1="12" y1="10" x2="28" y2="10" />
       <line x1="14" y1="20" x2="26" y2="20" />
     </>,
   ),
-  copoG: svg(
+  porcaoG: svg(
     <>
       <path d="M11 7h18l-2 26.2a2 2 0 0 1-2 1.8H15a2 2 0 0 1-2-1.8z" />
       <line x1="10" y1="7" x2="30" y2="7" />
@@ -139,121 +139,53 @@ export const ICO = {
   ),
 };
 
-const A = "/copo-quiz/assets";
+import { ICHEF_IMAGES as IMG } from "./ichef-assets";
 
 export const QUESTIONS: QuizQuestion[] = [
-  {
-    k: "ROTINA",
-    kind: "duo",
-    p: "Sua bebida esquenta antes de você terminar?",
-    o: [
-      { t: "Sim, sempre", s: "no fim já está morna", icon: ICO.sim, tone: "ok" },
-      { t: "Não", s: "eu bebo rápido", icon: ICO.nao, tone: "no" },
-    ],
-  },
-  {
-    k: "DIA A DIA",
-    kind: "arte",
-    p: "Onde o copo ia te salvar mais?",
-    o: [
-      { t: "Na academia", icon: ICO.halter },
-      { t: "No trabalho", icon: ICO.mesa },
-      { t: "No carro", icon: ICO.carro },
-      { t: "Na faculdade", icon: ICO.mochila },
-    ],
-  },
-  {
-    k: "CONSUMO",
-    kind: "sabor",
-    p: "Quantas latas você toma por semana?",
-    o: [
-      { t: "1 a 2", img: `${A}/latas-1.png` },
-      { t: "3 a 5", img: `${A}/latas-2.png` },
-      { t: "6 a 10", img: `${A}/latas-3.png` },
-      { t: "Mais de 10", img: `${A}/latas-4.png` },
-    ],
-  },
-  {
-    k: "SABOR",
-    kind: "sabor",
-    p: "Qual é o seu sabor favorito?",
-    o: [
-      { t: "Original", img: `${A}/lata-original.png` },
-      { t: "Mango Loco", img: `${A}/lata-mango.png` },
-      { t: "Ultra", img: `${A}/lata-ultra.png` },
-      { t: "Pacific Punch", img: `${A}/lata-pacific.png` },
-    ],
-  },
-  {
-    k: "HOJE",
-    kind: "arte",
-    p: "Quanto tempo o gelo dura no copo que você usa hoje?",
-    o: [
-      { t: "Menos de 1 hora", icon: ICO.gota },
-      { t: "Uma manhã", icon: ICO.relogio },
-      { t: "O dia todo", icon: ICO.sol },
-      { t: "Não uso copo térmico", icon: ICO.proibido },
-    ],
-  },
-  {
-    k: "O PRÊMIO",
-    kind: "grid",
-    p: "Qual detalhe do copo te ganhou?",
-    o: [
-      { t: "Tampa com canudo", img: `${A}/copo-tampa.png` },
-      { t: "Inox por dentro", img: `${A}/copo-corte.png` },
-      { t: "Chaveiro na alça", img: `${A}/copo-alca.png` },
-      { t: "O copo inteiro", img: `${A}/copo-frente.png` },
-    ],
-  },
-  {
-    k: "JÁ ACONTECEU",
-    kind: "duo",
-    p: "Já vazou bebida dentro da sua mochila?",
-    o: [
-      { t: "Já", s: "mais de uma vez", icon: ICO.sim, tone: "ok" },
-      { t: "Nunca", s: "e não quero começar", icon: ICO.nao, tone: "no" },
-    ],
-  },
-  {
-    k: "TAMANHO",
-    kind: "arte",
-    p: "Qual tamanho combina com o seu dia?",
-    o: [
-      { t: "500 ml", icon: ICO.copoP },
-      { t: "1 litro", icon: ICO.copoM },
-      { t: "1,15 litro", icon: ICO.copoG },
-      { t: "Quanto maior, melhor", icon: ICO.infinito },
-    ],
-  },
-  {
-    k: "ÚLTIMA",
-    kind: "arte",
-    p: "Com o que você encheria o copo no primeiro dia?",
-    o: [
-      { t: "Energético gelado", icon: ICO.cubo },
-      { t: "Água com gelo", icon: ICO.gota },
-      { t: "Café gelado", icon: ICO.cafe },
-      { t: "Suco ou isotônico", icon: ICO.garrafa },
-    ],
-  },
+  { k: "ROTINA", kind: "duo", p: "Você cozinha em casa com frequência?", o: [
+    { t: "Sim, quase todo dia", s: "a cozinha faz parte da rotina", icon: ICO.sim, tone: "ok" },
+    { t: "De vez em quando", s: "gosto de praticidade", icon: ICO.nao, tone: "no" },
+  ] },
+  { k: "DIA A DIA", kind: "arte", p: "Em que momento você mais usa suas panelas?", o: [
+    { t: "No almoço", icon: ICO.sol }, { t: "No jantar", icon: ICO.relogio },
+    { t: "No preparo da semana", icon: ICO.mesa }, { t: "No fim de semana", icon: ICO.cafe },
+  ] },
+  { k: "FREQUÊNCIA", kind: "arte", p: "Quantas vezes ao dia você cozinha e usa panelas?", o: [
+    { t: "1 vez", icon: ICO.porcaoP }, { t: "2 vezes", icon: ICO.porcaoM },
+    { t: "3 vezes", icon: ICO.porcaoG }, { t: "Mais de 3 vezes", icon: ICO.infinito },
+  ] },
+  { k: "SUA PANELA", kind: "sabor", p: "Qual tipo de panela você mais usa?", o: [
+    { t: "Frigideira pequena", img: IMG.frigideiraPequena },
+    { t: "Frigideira grande", img: IMG.frigideiraGrande },
+    { t: "Panela com cabo", img: IMG.panelaCabo },
+    { t: "Caçarola", img: IMG.cacarola },
+  ] },
+  { k: "HOJE", kind: "arte", p: "O que mais incomoda nas suas panelas atuais?", o: [
+    { t: "Comida grudando", icon: ICO.proibido }, { t: "Difíceis de limpar", icon: ICO.gota },
+    { t: "Aquecimento desigual", icon: ICO.sol }, { t: "Falta de tamanhos", icon: ICO.cubo },
+  ] },
+  { k: "O CONJUNTO", kind: "grid", p: "Qual detalhe do conjunto Shark mais chama sua atenção?", o: [
+    { t: "Frigideiras", img: IMG.frigideiraGrande }, { t: "Panelas com tampa", img: IMG.cacarola },
+    { t: "Cabos azuis", img: IMG.panelaCabo }, { t: "Conjunto completo", img: IMG.conjunto },
+  ] },
+  { k: "JÁ ACONTECEU", kind: "duo", p: "Sua comida já grudou mesmo com a panela untada?", o: [
+    { t: "Já", s: "mais de uma vez", icon: ICO.sim, tone: "ok" },
+    { t: "Nunca", s: "prefiro manter assim", icon: ICO.nao, tone: "no" },
+  ] },
+  { k: "TAMANHO", kind: "arte", p: "Para quantas pessoas você costuma cozinhar?", o: [
+    { t: "Só para mim", icon: ICO.porcaoP }, { t: "2 pessoas", icon: ICO.porcaoM },
+    { t: "3 a 4 pessoas", icon: ICO.porcaoG }, { t: "5 ou mais", icon: ICO.infinito },
+  ] },
+  { k: "ÚLTIMA", kind: "arte", p: "Qual receita você faria primeiro com o conjunto?", o: [
+    { t: "Omelete", icon: ICO.sol }, { t: "Arroz e feijão", icon: ICO.mesa },
+    { t: "Molho ou refogado", icon: ICO.cubo }, { t: "Um jantar especial", icon: ICO.cafe },
+  ] },
 ];
 
 export const SHIPPING = [
-  {
-    id: "pac",
-    name: "Entrega padrão · PAC",
-    eta: "7 a 12 dias úteis · com rastreio",
-    cost: 9.9,
-    was: 18.9,
-  },
-  {
-    id: "sedex",
-    name: "Expresso · SEDEX",
-    eta: "2 a 5 dias úteis · com rastreio",
-    cost: 18.94,
-  },
+  { id: "pac", name: "Entrega padrão · PAC", eta: "7 a 12 dias úteis · com rastreio", cost: 9.9, was: 18.9 },
+  { id: "sedex", name: "Expresso · SEDEX", eta: "2 a 5 dias úteis · com rastreio", cost: 18.94 },
 ] as const;
 
-export const BUMP_COPO = 19.9;
-export const BUMP_FARDO = 9.9;
+export const BUMP_UTENSILIOS = 19.9;
+export const BUMP_PROTETORES = 9.9;

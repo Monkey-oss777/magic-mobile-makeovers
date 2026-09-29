@@ -4,11 +4,11 @@ import { getPayVariant, track, type PayVariant } from "@/lib/ab";
 import { ttPageView, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbPageView, fbParams, fbTrack, fbTrackCustom } from "@/lib/meta";
 import AfterSections from "./AfterSections";
+import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 import Checkout from "./Checkout";
 
 type Screen = "intro" | "quiz" | "analise" | "premio";
 
-const A = "/copo-quiz/assets";
 
 export default function Funnel() {
   const [variant, setVariant] = useState<PayVariant>("pix");
@@ -26,8 +26,8 @@ export default function Funnel() {
     const v = getPayVariant();
     setVariant(v);
     track("funnel_view", v);
-    ttPageView({ content_name: "Quiz Copo Monster" });
-    fbPageView({ content_name: "Quiz Copo Monster" });
+    ttPageView({ content_name: "Quiz Conjunto iChef Shark" });
+    fbPageView({ content_name: "Quiz Conjunto iChef Shark" });
     return () => timers.current.forEach((t) => window.clearTimeout(t));
   }, []);
 
@@ -160,7 +160,7 @@ export default function Funnel() {
     <div className="mst">
       <header className="mst-top">
         <div className="mst-top-in">
-          <span>Desafio Monster · Copo 1,15L grátis</span>
+          <span>Desafio iChef · Conjunto Shark 7 peças</span>
         </div>
         <div className="mst-top-bar" style={{ width: `${progress}%` }} />
       </header>
@@ -169,24 +169,23 @@ export default function Funnel() {
         <div className="mst-wrap">
           {/* ══ INTRO ══ */}
           <div className={"mst-screen" + (screen === "intro" ? " is-on" : "")}>
-            <img src={`${A}/monster-logo.png`} alt="Monster Energy" className="mst-logo" />
+            <img src={IMG.conjunto} alt="Conjunto iChef Shark 7 peças" className="mst-logo" />
             <div className="mst-kicker">O desafio de hoje</div>
             <h1 className="mst-h1">
               Responda tudo
               <br />
-              e ganhe o copo
+              e ganhe o conjunto
               <br />
               <span className="mst-lime">grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre o seu dia. Chegou no fim, o Copo Térmico Monster 1,15L
-              de R$ 197 sai <b>por zero</b> — o copo é seu.
+              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, o Conjunto iChef Shark 7 peças sai <b>por zero</b> — você paga a entrega escolhida e somente os acessórios que adicionar.
             </p>
 
             <div className="mst-hero-ph">
               <img
-                src={`${A}/copo-frente.png`}
-                alt="Copo térmico Monster 1,15L, prêmio do desafio"
+                src={IMG.conjunto}
+                alt="Conjunto iChef Shark 7 peças"
               />
               <span className="mst-tag">R$ 0,00</span>
             </div>
@@ -200,7 +199,7 @@ export default function Funnel() {
               <i>/</i>
               <span>1 minuto</span>
               <i>/</i>
-              <span>copo grátis</span>
+              <span>conjunto grátis</span>
             </div>
           </div>
 
@@ -278,39 +277,39 @@ export default function Funnel() {
             <h2 className="mst-h1">
               Você ganhou
               <br />
-              o Copo Monster
+              o conjunto Shark
               <br />
               <span className="mst-lime">grátis</span>
             </h2>
 
             <div className="mst-palco">
               <img
-                src={`${A}/copo-frente.png`}
-                alt="Copo Térmico Monster 1,15L liberado no desafio"
+                src={IMG.conjunto}
+                alt="Conjunto iChef Shark 7 peças liberado no desafio"
               />
               <div className="mst-selo">
-                <s>R$ 197</s>
+                <span>7 peças</span>
                 <b>R$ 0</b>
               </div>
             </div>
 
             <div className="mst-prize-name">
-              Copo Térmico Monster 1,15L
-              <span>aço inox de parede dupla + chaveiro duplo</span>
+              Conjunto iChef Shark 7 peças
+              <span>panelas e frigideiras com tampas de vidro</span>
             </div>
 
             <ul className="mst-mini">
               <li>
-                <b>24h</b>
-                <span>de gelo</span>
+                <b>7</b>
+                <span>peças</span>
               </li>
               <li>
-                <b>1,15L</b>
-                <span>de capacidade</span>
+                <b>Vidro</b>
+                <span>nas tampas</span>
               </li>
               <li>
-                <b>Aço</b>
-                <span>inox a vácuo</span>
+                <b>Azul</b>
+                <span>nos cabos</span>
               </li>
             </ul>
 
@@ -320,7 +319,7 @@ export default function Funnel() {
             </div>
 
             <button type="button" className="mst-cta" onClick={openCheckout}>
-              Resgatar meu copo
+              Resgatar meu conjunto
             </button>
           </div>
         </div>

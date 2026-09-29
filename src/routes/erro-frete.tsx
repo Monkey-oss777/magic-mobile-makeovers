@@ -1,3 +1,4 @@
+import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -33,16 +34,16 @@ function CorreiosBadge() {
 export const Route = createFileRoute("/erro-frete")({
   head: () => ({
     meta: [
-      { title: "Diferença de frete · Pedido Monster" },
+      { title: "Diferença de frete · Pedido iChef Shark" },
       {
         name: "description",
         content:
-          "Falta pagar a diferença do frete do seu pedido Monster. Regularize em segundos via PIX e libere o envio com rastreio.",
+          "Falta pagar a diferença do frete do seu pedido iChef Shark. Regularize em segundos via PIX e libere o envio com rastreio.",
       },
-      { property: "og:title", content: "Diferença de frete · Pedido Monster" },
+      { property: "og:title", content: "Diferença de frete · Pedido iChef Shark" },
       {
         property: "og:description",
-        content: "Pague a diferença do frete por PIX e libere o envio do seu copo Monster.",
+        content: "Pague a diferença do frete por PIX e libere o envio do seu conjunto iChef Shark.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -190,8 +191,8 @@ function ErroFrete() {
     <main className="mst-co" role="main">
       <div className="mst-co-head">
         <span className="mst-co-brand">
-          <img src="/copo-quiz/assets/monster-logo.png" alt="Monster" />
-          <span>Monster Drinkware</span>
+          <img src={IMG.conjunto} alt="iChef Shark" />
+          <span>iChef Shark Series</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>
       </div>
@@ -302,7 +303,7 @@ function ErroFrete() {
             </div>
 
             <div className="mst-note-ok">
-              <b>O copo continua grátis.</b> Você paga apenas a diferença do envio, uma única vez.
+              <b>O conjunto continua grátis.</b> Você paga apenas a diferença do envio, uma única vez.
               Nenhum valor já pago será cobrado novamente.
             </div>
 
@@ -328,7 +329,7 @@ function ErroFrete() {
             <h2 className="mst-h2">
               Escolha como quer
               <br />
-              <span className="mst-lime">receber o copo</span>
+              <span className="mst-lime">receber o conjunto</span>
             </h2>
             <p className="mst-sub">
               Os valores abaixo correspondem apenas à <b>diferença de frete em aberto</b>.
@@ -430,8 +431,8 @@ function ErroFrete() {
         )}
 
         <p className="mst-company">
-          <strong>Monster Energy Brasil Comércio de Bebidas Ltda.</strong>
-          CNPJ 10.905.379/0001-32
+          <strong>Oferta iChef Shark</strong>
+          Confira o valor antes de pagar.
         </p>
       </div>
     </main>
