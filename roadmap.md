@@ -1,0 +1,3 @@
+- [ ] Substituir imagens recortadas pelas cinco fotos individuais em todas as apresentações do funil.
+- [ ] Adicionar seleção obrigatória de três peças ao fim do quiz, seguindo o seletor da referência.
+- [ ] Mostrar e registrar as peças escolhidas no pedido; verificar no celular e no computador.
