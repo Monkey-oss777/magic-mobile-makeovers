@@ -383,7 +383,7 @@ export default function Checkout({ variant, onClose }: Props) {
           </svg>
         </button>
         <span className="mst-co-brand">
-          <img src={IMG.conjunto} alt="iChef Shark" />
+          <img src={IMG.logo} alt="iChef" />
           <span>iChef Shark Series</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>

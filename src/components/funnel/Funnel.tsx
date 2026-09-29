@@ -169,7 +169,7 @@ export default function Funnel() {
         <div className="mst-wrap">
           {/* ══ INTRO ══ */}
           <div className={"mst-screen" + (screen === "intro" ? " is-on" : "")}>
-            <img src={IMG.conjunto} alt="Conjunto iChef Shark 7 peças" className="mst-logo" />
+            <img src={IMG.logo} alt="iChef" className="mst-logo" />
             <div className="mst-kicker">O desafio de hoje</div>
             <h1 className="mst-h1">
               Responda tudo

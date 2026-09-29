@@ -142,8 +142,8 @@
 }
 
 .mst-logo {
-  height: clamp(92px, 27vw, 150px);
-  width: min(100%, 340px);
+  height: clamp(42px, 12vw, 66px);
+  width: min(100%, 230px);
   object-fit: contain;
   margin: 0 auto 10px;
 }
@@ -821,8 +821,8 @@
 }
 
 .mst-co-brand img {
-  height: 24px;
-  width: 42px;
+  height: 26px;
+  width: 62px;
   object-fit: contain;
 }
 
