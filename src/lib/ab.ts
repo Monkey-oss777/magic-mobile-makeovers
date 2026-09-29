@@ -4,24 +4,10 @@
  * Variante "pix"  -> checkout finaliza no PIX (copia e cola + QR)
  * Variante "card" -> checkout finaliza no cartão de crédito
  *
- * Sorteio 50/50 no primeiro acesso, persistido no navegador.
- * Override manual pela URL: ?pay=pix | ?pay=card (ou ?v=a | ?v=b)
+ * Cartão permanece indisponível até existir um processador de cartões real.
  */
 
 export type PayVariant = "pix" | "card";
-
-const STORAGE_KEY = "mst_ab_pay";
-
-function fromUrl(): PayVariant | null {
-  if (typeof window === "undefined") return null;
-  const p = new URLSearchParams(window.location.search);
-  const pay = (p.get("pay") || "").toLowerCase();
-  if (pay === "pix" || pay === "card") return pay;
-  const v = (p.get("v") || "").toLowerCase();
-  if (v === "a") return "pix";
-  if (v === "b") return "card";
-  return null;
-}
 
 export function getPayVariant(): PayVariant {
   // O checkout de cartão herdado do original simulava aprovação sem cobrar.
