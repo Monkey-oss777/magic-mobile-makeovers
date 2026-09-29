@@ -24,18 +24,8 @@ function fromUrl(): PayVariant | null {
 }
 
 export function getPayVariant(): PayVariant {
-  if (typeof window === "undefined") return "pix";
-  const forced = fromUrl();
-  if (forced) {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, forced);
-    } catch {
-      /* storage bloqueado */
-    }
-    return forced;
-  }
-  // Padrao atual: PIX (integracao real). O cartao fica disponivel apenas
-  // por override manual na URL (?pay=card) para futuros testes A/B.
+  // O checkout de cartão herdado do original simulava aprovação sem cobrar.
+  // Não disponibilize esse caminho enquanto não houver processador de cartões.
   return "pix";
 }
 

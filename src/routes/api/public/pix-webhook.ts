@@ -64,7 +64,7 @@ export const Route = createFileRoute("/api/public/pix-webhook")({
         const effectiveStatus = current.status === "approved" && status !== "refunded" && status !== "chargeback" ? "approved" : status;
         const patch = {
           status: effectiveStatus,
-          last_webhook: body,
+          last_webhook: JSON.parse(JSON.stringify(body)) as Record<string, string | number | boolean | null>,
           ...(transactionId && !current.transaction_id ? { transaction_id: transactionId } : {}),
           ...(effectiveStatus === "approved" && !current.paid_at ? { paid_at: new Date().toISOString() } : {}),
         };

@@ -169,7 +169,8 @@ export const createPixCharge = createServerFn({ method: "POST" })
         transaction_id: body.transaction_id ?? null,
         // O retorno pode chegar antes da resposta de criação; não rebaixe uma aprovação.
       })
-      .eq("order_id", orderId);
+      .eq("order_id", orderId)
+      .is("transaction_id", null);
     if (updateError) console.error("pix transaction update failed", updateError.message);
 
     return {
