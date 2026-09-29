@@ -555,6 +555,95 @@
   margin-top: 5px;
 }
 
+/* Peças selecionáveis do prêmio */
+.mst-pick {
+  margin: 18px 0;
+}
+
+.mst-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mst-pick-card.mst-pick-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  height: 156px;
+  padding: 12px 8px;
+  border: 1px solid var(--mst-line-2);
+  border-radius: 8px;
+  background: var(--mst-panel);
+  color: var(--mst-ink);
+  white-space: normal;
+  text-align: center;
+  box-shadow: none;
+}
+
+.mst-pick-card.is-on.mst-pick-card {
+  border-color: var(--mst-lime);
+  background: var(--mst-panel-2);
+}
+
+.mst-pick-card.is-off {
+  opacity: 0.55;
+}
+
+.mst-pick-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  min-height: 0;
+}
+
+.mst-pick-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.mst-pick-t {
+  font-family: var(--mst-font-cond);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mst-pick-chk {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--mst-line-2);
+  border-radius: 50%;
+  background: var(--mst-bg-2);
+  color: var(--mst-ink);
+}
+
+.mst-pick-card.is-on .mst-pick-chk {
+  border-color: var(--mst-lime);
+  background: var(--mst-lime-dark);
+}
+
+.mst-pick-hint {
+  margin: 12px 0 0;
+  color: var(--mst-mut);
+  font-size: 13px;
+  text-align: center;
+}
+
 .mst-mini {
   list-style: none;
   margin: 16px 0;
