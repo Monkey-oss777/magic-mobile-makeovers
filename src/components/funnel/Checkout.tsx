@@ -182,7 +182,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
         const itens = [
           ...selectedPieces.map((piece) => ({ nome: piece.name, valor: 0 })),
           { nome: `Envio rastreado ${shipOpt.id.toUpperCase()}`, valor: shipOpt.cost },
-          ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (3 peças)", valor: BUMP_UTENSILIOS }] : []),
+          ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (7 peças)", valor: BUMP_UTENSILIOS }] : []),
           ...(bumpProtetores ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_PROTETORES }] : []),
         ];
         const r = await criarPix({
@@ -695,11 +695,11 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                   onClick={() => setBumpUtensilios((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
-                    <img src={IMG.utensilios} alt="Kit de utensílios de silicone" loading="lazy" />
+                    <img src={IMG.utensilios} alt="Kit de sete utensílios de silicone" loading="lazy" width={1024} height={1024} />
                   </span>
                   <span>
                     <span className="mst-bump-t">Kit de utensílios de silicone</span>
-                    <span className="mst-bump-d">3 utensílios para cozinhar e servir</span>
+                    <span className="mst-bump-d">7 utensílios para cozinhar e servir</span>
                   </span>
                   <span className="mst-bump-p">
                     R$ {brl(BUMP_UTENSILIOS)}
