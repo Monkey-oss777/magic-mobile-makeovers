@@ -1,5 +1,5 @@
 import FunnelButton from "@/components/funnel/FunnelButton";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { QUESTIONS, type QuizOption } from "@/lib/quiz-data";
 import { getPayVariant, track, type PayVariant } from "@/lib/ab";
 import { ttPageView, ttParams, ttTrack } from "@/lib/tiktok";
@@ -8,8 +8,9 @@ import AfterSections from "./AfterSections";
 import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
 import { PRIZE_PRODUCTS, hasSelectedModel, selectModel } from "@/lib/prize-products";
 import Checkout from "./Checkout";
+import RegionAnalysis from "./RegionAnalysis";
 
-type Screen = "intro" | "quiz" | "analise" | "premio";
+type Screen = "intro" | "quiz" | "analise" | "regiao" | "premio";
 
 
 export default function Funnel() {
@@ -103,14 +104,20 @@ export default function Funnel() {
       );
     });
     timers.current.push(
-      window.setTimeout(() => {
+      window.setTimeout(() => toScreen("regiao"), 2800),
+    );
+  }
+
+  const finishRegion = useCallback(() => {
+    {
+      {
         track("quiz_complete", variant, { answers: answers.current.length });
         ttTrack("SubmitForm", ttParams(0, { content_name: "Quiz concluído" }));
         fbTrack("Lead", fbParams(0, { content_name: "Quiz concluído" }));
         toScreen("premio");
-      }, 2800),
-    );
-  }
+      }
+    }
+  }, [variant]);
 
   function openCheckout() {
     if (!hasSelectedModel(picks)) {
@@ -271,6 +278,10 @@ export default function Funnel() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className={"mst-screen" + (screen === "regiao" ? " is-on" : "")}>
+            {screen === "regiao" && <RegionAnalysis active onDone={finishRegion} />}
           </div>
 
           {/* ══ PRÊMIO ══ */}
