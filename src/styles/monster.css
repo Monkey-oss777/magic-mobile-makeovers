@@ -1735,6 +1735,12 @@
 
 .mst-game-grid { max-height: 560px; overflow-y: auto; padding: 2px; }
 .mst-game-grid .mst-opt-img { height: 140px; }
+.mst-game-grid .mst-opt-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
 .mst-game-grid .mst-opt-txt { font-size: 17px; }
 .mst-co-brand img { width: 100px; }
 .mst-top-in { color: var(--mst-cyan); }
