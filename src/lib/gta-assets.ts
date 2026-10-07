@@ -6,6 +6,7 @@ import grips from "@/assets/controle-grips.jpg";
 import jasonLucia from "@/assets/gta-jason-lucia.png.asset.json";
 import viceCity from "@/assets/gta-vice-city.png.asset.json";
 import lucia from "@/assets/gta-lucia.png.asset.json";
+import premioBanner from "@/assets/gta-premio-banner.png.asset.json";
 
 export const GTA_IMAGES = {
   logo: logo.url,
@@ -16,4 +17,5 @@ export const GTA_IMAGES = {
   jasonLucia: jasonLucia.url,
   viceCity: viceCity.url,
   lucia: lucia.url,
+  premioBanner: premioBanner.url,
 };

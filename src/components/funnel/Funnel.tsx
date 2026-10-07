@@ -296,13 +296,9 @@ export default function Funnel() {
 
             <div className="mst-palco">
               <img
-                src={IMG.neon}
-                alt="Controle PS5 GTA VI Preto com jogo"
+                src={IMG.premioBanner}
+                alt="Desafio concluído — Controle + GTA VI grátis"
               />
-              <div className="mst-selo">
-                <span>Controle + jogo</span>
-                <b>R$ 0</b>
-              </div>
             </div>
 
             <div className="mst-prize-name">

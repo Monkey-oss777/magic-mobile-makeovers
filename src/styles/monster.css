@@ -507,8 +507,9 @@
 .mst-palco {
   position: relative;
   margin: 14px 0 16px;
-  padding: 20px;
+  padding: 0;
   border-radius: 8px;
+  overflow: hidden;
   border: 1px solid var(--mst-line);
   background:
     radial-gradient(65% 55% at 50% 45%, rgba(255, 112, 191, 0.2), transparent 72%),
@@ -516,10 +517,12 @@
 }
 
 .mst-palco img {
+  display: block;
   margin-inline: auto;
-  max-height: min(44vh, 320px);
-  width: auto;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .mst-selo {
