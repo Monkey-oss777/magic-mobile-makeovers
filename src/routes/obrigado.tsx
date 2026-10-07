@@ -1,4 +1,4 @@
-import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
+import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -10,16 +10,16 @@ const brl = (v: number) => v.toFixed(2).replace(".", ",");
 export const Route = createFileRoute("/obrigado")({
   head: () => ({
     meta: [
-      { title: "Pedido confirmado · Peças iChef Shark a caminho" },
+      { title: "Pedido confirmado · Kit GTA VI confirmado" },
       {
         name: "description",
         content:
-          "Diferença de frete paga e pedido liberado para envio. Suas três peças iChef Shark serão postadas com código de rastreio.",
+          "Diferença de frete paga e pedido liberado para envio. Seu controle PS5 + jogo GTA VI serão enviados após o lançamento, com rastreio.",
       },
-      { property: "og:title", content: "Pedido confirmado · Peças iChef Shark a caminho" },
+      { property: "og:title", content: "Pedido confirmado · Kit GTA VI confirmado" },
       {
         property: "og:description",
-        content: "Pagamento confirmado. Suas três peças iChef Shark estão liberadas para postagem.",
+        content: "Pagamento confirmado. Seu controle PS5 + jogo GTA VI têm envio previsto após o lançamento.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -64,8 +64,8 @@ function Obrigado() {
     <main className="mst-co" role="main">
       <div className="mst-co-head">
         <span className="mst-co-brand">
-          <img src={IMG.logo} alt="iChef" />
-          <span>Shark Series</span>
+          <img src={IMG.logo} alt="Sony PlayStation" />
+          <span>GTA VI</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>
       </div>
@@ -81,8 +81,7 @@ function Obrigado() {
             Pagamento confirmado!
           </h1>
           <p className="mst-sub" style={{ marginBottom: 6 }}>
-            Tudo certo com a diferença do frete. Seu pedido saiu da fila e já está liberado para
-            postagem.
+            Tudo certo com a diferença do frete. O envio do controle e jogo será feito após o lançamento previsto para 19/11/2026.
           </p>
         </div>
 
@@ -100,7 +99,7 @@ function Obrigado() {
             </div>
           )) : (
             <div className="mst-total-row">
-              <span>Três peças iChef Shark escolhidas</span>
+              <span>Controle PS5 GTA VI + Jogo GTA VI</span>
               <b className="green">GRÁTIS</b>
             </div>
           )}
@@ -128,9 +127,9 @@ function Obrigado() {
         )}
 
         <ol className="mst-pix-steps">
-          <li>Etiqueta dos Correios emitida em até 12h</li>
+          <li>Envio após o lançamento previsto para 19/11/2026</li>
           <li>Código de rastreio enviado para {info?.customer.email || "o seu e-mail"}</li>
-          <li>Entrega prevista em {prazo} após a postagem</li>
+          <li>Entrega prevista em {prazo} após o lançamento e a postagem</li>
         </ol>
 
         <div className="mst-watch">Guarde o número do pedido para acompanhar a entrega</div>
@@ -140,7 +139,7 @@ function Obrigado() {
         </Link>
 
         <p className="mst-company">
-          <strong>Oferta iChef Shark</strong>
+          <strong>Oferta GTA VI</strong>
           Guarde o número do pedido.
         </p>
       </div>

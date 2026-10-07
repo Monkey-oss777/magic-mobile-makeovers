@@ -99,10 +99,10 @@ async function sha256(v: string) {
 
 /** Produto principal do funil — usado nos parâmetros padrão dos eventos. */
 export const TT_CONTENT = {
-  content_id: "ichef-shark-3-pecas",
+  content_id: "ps5-gta-vi-kit",
   content_type: "product",
-  content_name: "3 peças iChef Shark",
-  content_category: "Casa / Cozinha",
+  content_name: "Controle PS5 GTA VI + Jogo GTA VI",
+  content_category: "Games / PlayStation 5",
   currency: "BRL",
 };
 

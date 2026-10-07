@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useNavigate } from "@tanstack/react-router";
-import { BUMP_UTENSILIOS, BUMP_PROTETORES, SHIPPING } from "@/lib/quiz-data";
+import { BUMP_CASE, BUMP_GRIPS, SHIPPING } from "@/lib/quiz-data";
 import { getTikTokAttribution, ttIdentify, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbIdentify, fbParams, fbTrack, getMetaAttribution } from "@/lib/meta";
 import { createPixCharge, getPixStatus } from "@/lib/pix.functions";
 import { track, type PayVariant } from "@/lib/ab";
-import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
-import { PRIZE_PRODUCTS } from "@/lib/prize-products";
+import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
+import { PRIZE_PRODUCTS, hasSelectedModel } from "@/lib/prize-products";
 
 
 const brl = (v: number) => v.toFixed(2).replace(".", ",");
@@ -51,8 +51,8 @@ export default function Checkout({ variant, picks, onClose }: Props) {
   const [step, setStep] = useState<Step>(1);
   const [err, setErr] = useState("");
   const [ship, setShip] = useState<string>(SHIPPING[0].id);
-  const [bumpUtensilios, setBumpUtensilios] = useState(false);
-  const [bumpProtetores, setBumpProtetores] = useState(false);
+  const [bumpCase, setBumpCase] = useState(false);
+  const [bumpGrips, setBumpGrips] = useState(false);
   const [paying, setPaying] = useState(false);
   const [pixReady, setPixReady] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -80,15 +80,11 @@ export default function Checkout({ variant, picks, onClose }: Props) {
   const set = (k: keyof typeof f, v: string) => setF((p) => ({ ...p, [k]: v }));
 
   const shipOpt = SHIPPING.find((s) => s.id === ship) ?? SHIPPING[0];
-  const tomorrow = useMemo(() => {
-    const d = new Date();
-    d.setDate(d.getDate() + 1);
-    return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}`;
-  }, []);
+
 
   const total = useMemo(
-    () => shipOpt.cost + (bumpUtensilios ? BUMP_UTENSILIOS : 0) + (bumpProtetores ? BUMP_PROTETORES : 0),
-    [shipOpt.cost, bumpUtensilios, bumpProtetores],
+    () => shipOpt.cost + (bumpCase ? BUMP_CASE : 0) + (bumpGrips ? BUMP_GRIPS : 0),
+    [shipOpt.cost, bumpCase, bumpGrips],
   );
 
   const [pedido, setPedido] = useState("");
@@ -173,7 +169,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
 
   async function finalizar() {
     setErr("");
-    if (selectedPieces.length !== 3) return setErr("Escolha três peças antes de continuar.");
+    if (!hasSelectedModel(picks)) return setErr("Escolha um modelo de controle antes de continuar.");
     track("payment_attempt", variant, { total, method: variant });
 
     if (variant === "pix") {
@@ -182,13 +178,13 @@ export default function Checkout({ variant, picks, onClose }: Props) {
         const itens = [
           ...selectedPieces.map((piece) => ({ nome: piece.name, valor: 0 })),
           { nome: `Envio rastreado ${shipOpt.id.toUpperCase()}`, valor: shipOpt.cost },
-          ...(bumpUtensilios ? [{ nome: "Kit de utensílios de silicone (7 peças)", valor: BUMP_UTENSILIOS }] : []),
-          ...(bumpProtetores ? [{ nome: "Kit de protetores para panelas (3 peças)", valor: BUMP_PROTETORES }] : []),
+          ...(bumpCase ? [{ nome: "Case protetora para controle PS5", valor: BUMP_CASE }] : []),
+          ...(bumpGrips ? [{ nome: "Par de grips para analógicos", valor: BUMP_GRIPS }] : []),
         ];
         const r = await criarPix({
           data: {
             amount: Number(total.toFixed(2)),
-            productName: `3 peças iChef Shark (${selectedPieces.map((piece) => piece.name).join(", ")}) - entrega`,
+            productName: `Controle PS5 GTA VI + Jogo GTA VI (${selectedPieces.map((piece) => piece.name).join(", ")}) - entrega`,
             items: itens,
             variant,
             customer: {
@@ -356,7 +352,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
           Pedido confirmado!
         </h1>
         <p className="mst-sub" style={{ marginBottom: 6 }}>
-          Pedido #{pedido}. O código de rastreio chega no seu e-mail nas próximas horas.
+          Pedido #{pedido}. O envio acontece após o lançamento; o rastreio será enviado por e-mail.
         </p>
         <div className="mst-kicker">Pago R$ {brl(total)}</div>
         <button type="button" className="mst-cta" style={{ marginTop: 18 }} onClick={onClose}>
@@ -388,8 +384,8 @@ export default function Checkout({ variant, picks, onClose }: Props) {
           </svg>
         </button>
         <span className="mst-co-brand">
-          <img src={IMG.logo} alt="iChef" />
-          <span>Shark Series</span>
+          <img src={IMG.logo} alt="Sony PlayStation" />
+          <span>GTA VI</span>
         </span>
         <span className="mst-co-secure">Ambiente seguro</span>
       </div>
@@ -400,10 +396,10 @@ export default function Checkout({ variant, picks, onClose }: Props) {
             <div className="mst-kicker">Último passo</div>
             <h2 className="mst-h2">
               Finalize seu pedido
-              <br />e leve suas <span className="mst-lime">3 peças grátis</span>
+              <br />e leve suas <span className="mst-lime">controle + jogo</span>
             </h2>
             <p className="mst-sub">
-              As três peças custam R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
+              O kit controle + jogo custa R$ 0,00. O total inclui a entrega escolhida e os acessórios opcionais selecionados.
             </p>
 
             <div className="mst-totals">
@@ -419,16 +415,16 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                 <span>Envio rastreado ({shipOpt.id.toUpperCase()})</span>
                 <b>R$ {brl(shipOpt.cost)}</b>
               </div>
-              {bumpUtensilios && (
+              {bumpCase && (
                 <div className="mst-total-row">
-                  <span>Utensílios de silicone</span>
-                  <b>R$ {brl(BUMP_UTENSILIOS)}</b>
+                  <span>Case protetora para controle</span>
+                  <b>R$ {brl(BUMP_CASE)}</b>
                 </div>
               )}
-              {bumpProtetores && (
+              {bumpGrips && (
                 <div className="mst-total-row">
-                  <span>Protetores de panelas</span>
-                  <b>R$ {brl(BUMP_PROTETORES)}</b>
+                  <span>Grips para analógicos</span>
+                  <b>R$ {brl(BUMP_GRIPS)}</b>
                 </div>
               )}
               <div className="mst-total-final">
@@ -500,7 +496,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                   <span className="mst-lime">de resgate</span>
                 </h2>
                 <p className="mst-sub">
-                   Suas três peças foram liberadas por <b>R$ 0</b> — complete os dados para seguir.
+                   Seu controle + jogo foram liberados por <b>R$ 0</b> — complete os dados para seguir.
                 </p>
                 <div className="mst-field">
                   <label htmlFor="co-nome">Nome completo</label>
@@ -555,7 +551,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                 <h2 className="mst-h2">
                   Onde entregar
                   <br />
-                  <span className="mst-lime">as suas peças</span>
+                  <span className="mst-lime">seu controle + jogo</span>
                 </h2>
 
                 <div className="mst-kicker" style={{ margin: "0 0 8px" }}>
@@ -568,7 +564,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                     <circle cx="17.5" cy="18" r="1.8" />
                   </svg>
                   <span>
-                    As três peças são grátis, você paga apenas a entrega. Todos os envios seguem em caixa reforçada, com proteção contra avarias e código de rastreamento.
+                    O controle + jogo saem por R$ 0,00 nesta oferta; você paga a entrega. Lançamento previsto para 19/11/2026. Envio após o lançamento, em caixa reforçada, com proteção e rastreamento.
                   </span>
                 </div>
                 <div className="mst-ship">
@@ -583,7 +579,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                       <span>
                         <span className="mst-ship-name">{s.name}</span>
                         <span className="mst-ship-eta">
-                          {s.id === "sedex" ? `Previsão: chega AMANHÃ, ${tomorrow} · com rastreio` : s.eta}
+                          {s.eta}
                         </span>
                       </span>
                       <span className="mst-ship-price">
@@ -691,18 +687,18 @@ export default function Checkout({ variant, picks, onClose }: Props) {
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpUtensilios ? " is-on" : "")}
-                  onClick={() => setBumpUtensilios((v) => !v)}
+                  className={"mst-bump" + (bumpCase ? " is-on" : "")}
+                  onClick={() => setBumpCase((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
-                    <img src={IMG.utensilios} alt="Kit de sete utensílios de silicone" loading="lazy" width={1024} height={1024} />
+                    <img src={IMG.carryingCase} alt="Case protetora para controle PS5" loading="lazy" width={1024} height={1024} />
                   </span>
                   <span>
-                    <span className="mst-bump-t">Kit de utensílios de silicone</span>
-                    <span className="mst-bump-d">7 utensílios para cozinhar e servir</span>
+                    <span className="mst-bump-t">Case protetora para controle</span>
+                    <span className="mst-bump-d">Estojo rígido para guardar e transportar</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_UTENSILIOS)}
+                    R$ {brl(BUMP_CASE)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -713,18 +709,18 @@ export default function Checkout({ variant, picks, onClose }: Props) {
 
                 <button
                   type="button"
-                  className={"mst-bump" + (bumpProtetores ? " is-on" : "")}
-                  onClick={() => setBumpProtetores((v) => !v)}
+                  className={"mst-bump" + (bumpGrips ? " is-on" : "")}
+                  onClick={() => setBumpGrips((v) => !v)}
                 >
                   <span className="mst-bump-thumb">
-                    <img src={IMG.protetores} alt="Kit de protetores de panelas" loading="lazy" />
+                    <img src={IMG.grips} alt="Par de grips para analógicos" loading="lazy" />
                   </span>
                   <span>
-                    <span className="mst-bump-t">Protetores de panelas</span>
-                    <span className="mst-bump-d">3 separadores para guardar as peças</span>
+                    <span className="mst-bump-t">Grips para analógicos</span>
+                    <span className="mst-bump-d">2 capas de silicone para os analógicos</span>
                   </span>
                   <span className="mst-bump-p">
-                    R$ {brl(BUMP_PROTETORES)}
+                    R$ {brl(BUMP_GRIPS)}
                     <span className="mst-chk">
                       <svg viewBox="0 0 24 24">
                         <path d="M20 6 9 17l-5-5" />
@@ -744,16 +740,16 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                     <span>Frete ({shipOpt.id.toUpperCase()})</span>
                     <b>R$ {brl(shipOpt.cost)}</b>
                   </div>
-                  {bumpUtensilios && (
+                  {bumpCase && (
                     <div className="mst-total-row">
-                      <span>Utensílios de silicone</span>
-                      <b>R$ {brl(BUMP_UTENSILIOS)}</b>
+                      <span>Case protetora para controle</span>
+                      <b>R$ {brl(BUMP_CASE)}</b>
                     </div>
                   )}
-                  {bumpProtetores && (
+                  {bumpGrips && (
                     <div className="mst-total-row">
-                      <span>Protetores de panelas</span>
-                      <b>R$ {brl(BUMP_PROTETORES)}</b>
+                      <span>Grips para analógicos</span>
+                      <b>R$ {brl(BUMP_GRIPS)}</b>
                     </div>
                   )}
                   <div className="mst-total-final">
@@ -867,9 +863,9 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                       <circle cx="5.5" cy="18.5" r="2.5" />
                       <circle cx="18.5" cy="18.5" r="2.5" />
                     </svg>
-                    Postado
+                    Envio após
                     <br />
-                    em 12h
+                    lançamento
                   </div>
                   <div className="mst-selo-item">
                     <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
@@ -886,8 +882,8 @@ export default function Checkout({ variant, picks, onClose }: Props) {
             {err && <div className="mst-err">{err}</div>}
 
             <p className="mst-company">
-              <strong>Polimport Comércio e Exportação LTDA</strong>
-              CNPJ 00.436.042/0008-46
+              <strong>Desafio GTA VI · Oferta independente</strong>
+              Sem vínculo promocional com Sony ou Rockstar Games.
             </p>
           </>
         )}
@@ -902,7 +898,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
             </div>
             <div className="mst-bar-act">
               <span className="mst-bar-tot">
-                 <span>{step === 3 ? "Total" : "Suas peças"}</span>
+                 <span>{step === 3 ? "Total" : "Seu kit"}</span>
                 <b>{step === 3 ? `R$ ${brl(total)}` : "GRÁTIS"}</b>
               </span>
               <button
