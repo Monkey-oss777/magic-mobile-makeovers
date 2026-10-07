@@ -305,6 +305,22 @@ export default function Funnel() {
               </div>
             </div>
 
+            <div className="mst-resgate-gal">
+              <figure className="mst-resgate-card">
+                <img src={IMG.jasonLucia} alt="Jason e Lucia, protagonistas de GTA VI" loading="lazy" />
+                <figcaption>Jason e Lucia</figcaption>
+              </figure>
+              <figure className="mst-resgate-card">
+                <img src={IMG.viceCity} alt="Letreiro de Vice City ao entardecer" loading="lazy" />
+                <figcaption>De volta a Vice City</figcaption>
+              </figure>
+              <figure className="mst-resgate-card">
+                <img src={IMG.lucia} alt="Lucia dentro do carro em Vice City" loading="lazy" />
+                <figcaption>Sinta a ação</figcaption>
+              </figure>
+            </div>
+
+
             <div className="mst-prize-name">
               Escolha seu controle + GTA VI
               <span>Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.</span>
