@@ -22,15 +22,16 @@ export default function RegionAnalysis({ active, onDone }: { active: boolean; on
 
     const timers: number[] = [];
     const total = 4;
+    const stepMs = 3500;
     for (let i = 1; i <= total; i++) {
       timers.push(
         window.setTimeout(() => {
           setStep(i);
           setPct((i / total) * 100);
-        }, i * 1500),
+        }, i * stepMs),
       );
     }
-    timers.push(window.setTimeout(onDone, total * 1500 + 700));
+    timers.push(window.setTimeout(onDone, total * stepMs + 1000));
     return () => {
       timers.forEach((t) => window.clearTimeout(t));
       ctrl.abort();
