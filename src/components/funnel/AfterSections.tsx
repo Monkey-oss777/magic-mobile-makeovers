@@ -11,11 +11,7 @@ const SPECS = [
 
 const FAQ = [
   { q: "O que vem no kit?", a: "Um controle DualSense GTA VI, na edição Preta ou Branca escolhida, mais o jogo GTA VI para PS5. Console não incluído. Nesta oferta, o kit sai por R$ 0; você paga o envio e os extras que selecionar." },
-  { q: "Quando será enviado?", a: "O lançamento de GTA VI e dos controles está previsto para 19 de novembro de 2026. O envio desta oferta será após o lançamento, sujeito à disponibilidade na região. Não há entrega imediata." },
   { q: "Quais modelos posso escolher?", a: "Escolha um dos dois modelos apresentados: edição Preta ou edição Branca. Cada opção já inclui o jogo GTA VI para PS5." },
-  { q: "O jogo funciona no PS4?", a: "Não. GTA VI foi anunciado para PlayStation 5 e Xbox Series X|S. O jogo deste kit é a versão para PS5." },
-  { q: "Esta é uma promoção da Sony ou Rockstar?", a: "Não. Esta oferta é independente. Sony, PlayStation, DualSense e Grand Theft Auto são marcas de seus respectivos proprietários." },
-  { q: "Tem mensalidade ou assinatura?", a: "Não. O pagamento mostrado na próxima etapa é único, sem assinatura." },
   { q: "Quais são as opções de entrega?", a: "Você pode escolher PAC ou SEDEX. Os valores e prazos estimados aparecem antes da geração do PIX." },
   { q: "Posso adicionar acessórios?", a: "Sim. Os acessórios opcionais aparecem no pagamento com seus preços individuais." },
 ];
