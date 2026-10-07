@@ -169,6 +169,9 @@ export default function Funnel() {
 
   return (
     <div className="mst">
+      <div className="mst-scenery" aria-hidden="true">
+        <img src={IMG.nightScenery} alt="" width={1536} height={1024} />
+      </div>
       <header className="mst-top">
         <div className="mst-top-in">
           <span>Desafio GTA VI · Controle PS5 + Jogo</span>
