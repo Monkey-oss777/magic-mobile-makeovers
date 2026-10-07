@@ -883,8 +883,8 @@ export default function Checkout({ variant, picks, onClose }: Props) {
             {err && <div className="mst-err">{err}</div>}
 
             <p className="mst-company">
-              <strong>Desafio GTA VI · Oferta independente</strong>
-              Sem vínculo promocional com Sony ou Rockstar Games.
+              <strong>Playstation &amp; GTA VI · Promoção Brasil Ltda</strong>
+              CNPJ - 00.436.042/0008-46
             </p>
           </>
         )}
