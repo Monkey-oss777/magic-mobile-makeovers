@@ -77,7 +77,7 @@ function Obrigado() {
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h1 className="mst-h2" style={{ margin: 0 }}>
+          <h1 className="mst-h2" style={{ margin: "0 0 16px" }}>
             Pagamento confirmado!
           </h1>
           <p className="mst-sub" style={{ marginBottom: 6 }}>
