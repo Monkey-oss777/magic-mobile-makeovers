@@ -13,3 +13,4 @@ Payment callbacks use a per-order HMAC in the Cacofy POST webhook URL, validated
 Keep card checkout disabled until a real card processor exists; the inherited card flow simulated approval without collecting payment.
 Keep campaign media in a dedicated asset module and selectable bundles in the shared product catalog so quiz, checkout, and tracking stay consistent.
 Use the existing funnel CSS tokens and a dependency-free shared button wrapper for funnel controls to preserve styling without introducing optimizer dependencies.
+Keep atmospheric funnel scenery in the shared funnel stylesheet behind content and outside interactive hit areas so stage transitions and checkout behavior stay unchanged.

@@ -4,3 +4,5 @@
 - [x] Atualizar textos de pagamento, confirmação e identificação dos eventos.
 - [x] Conferir informações oficiais e deixar disponibilidade clara.
 - [x] Validar fluxo e aplicar atualização obrigatória de pacotes.
+- [ ] Aplicar Vice City noturna com rosa, lilás, laranja e coqueiros sem alterar etapas.
+- [ ] Conferir aparência e navegação após o ajuste visual.
