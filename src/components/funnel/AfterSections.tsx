@@ -5,7 +5,7 @@ import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
 const SPECS = [
   { img: IMG.neon, alt: "Controle GTA VI Preto com jogo para PS5", t: "Edição Preta", d: "Palmeiras em relevo e acabamento que muda de cor, inspirado nas noites de Vice City." },
   { img: IMG.white, alt: "Controle GTA VI Branco com jogo para PS5", t: "Edição Branca", d: "O mesmo acabamento inspirado em Vice City, com detalhes claros e a identidade de GTA VI." },
-  { img: IMG.neon, alt: "DualSense GTA VI", t: "Sinta a ação", d: "Resposta tátil e gatilhos adaptáveis do DualSense para acompanhar a ação de GTA VI no PS5." },
+  { img: IMG.lucia, alt: "Lucia em ação em Vice City", t: "Sinta a ação", d: "Resposta tátil e gatilhos adaptáveis do DualSense para acompanhar a ação de GTA VI no PS5." },
   { img: IMG.white, alt: "Controle PS5 com GTA VI", t: "Controle + jogo", d: "Um controle no modelo escolhido e uma cópia de GTA VI para PlayStation 5. Console não incluído." },
 ];
 
@@ -35,7 +35,7 @@ export default function AfterSections({ onCta }: { onCta: () => void }) {
         <div className="mst-sec-label">// Grand Theft Auto VI</div>
         <h2 className="mst-h2">Bem-vindo<br />a Leonida.</h2>
         <div className="mst-specs">
-          {[{ img: IMG.neon, alt: "Kit GTA VI Preto", t: "Jason e Lucia", d: "Uma dupla envolvida em uma conspiração que atravessa o estado de Leonida." }, { img: IMG.white, alt: "Kit GTA VI Branco", t: "De volta a Vice City", d: "A cidade retorna em uma nova história. Lançamento anunciado para 19/11/2026." }].map((s) => (
+          {[{ img: IMG.jasonLucia, alt: "Jason e Lucia, protagonistas de GTA VI", t: "Jason e Lucia", d: "Uma dupla envolvida em uma conspiração que atravessa o estado de Leonida." }, { img: IMG.viceCity, alt: "Vice City ao entardecer", t: "De volta a Vice City", d: "A cidade retorna em uma nova história. Lançamento anunciado para 19/11/2026." }].map((s) => (
             <figure className="mst-spec" key={s.t}><span className="mst-spec-ph"><img src={s.img} alt={s.alt} loading="lazy" /></span><figcaption><b>{s.t}</b><span>{s.d}</span></figcaption></figure>
           ))}
         </div>
