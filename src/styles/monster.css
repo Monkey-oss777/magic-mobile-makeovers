@@ -723,7 +723,7 @@
 .mst-spec {
   margin: 0;
   border: 1px solid var(--mst-line);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--mst-panel);
   overflow: hidden;
 }
@@ -739,6 +739,7 @@
 .mst-spec-ph img {
   max-height: 190px;
   width: auto;
+  border-radius: 12px;
 }
 
 .mst-spec figcaption {
