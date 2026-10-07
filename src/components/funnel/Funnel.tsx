@@ -190,7 +190,7 @@ export default function Funnel() {
               <span className="mst-lime">grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre o universo GTA. Ao final, escolha seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00 — você paga a entrega. Lançamento previsto para 19/11/2026; envio após o lançamento.
+              9 perguntas rápidas sobre o universo GTA. Ao final, descubra se ganhou seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00.
             </p>
 
             <div className="mst-hero-ph">
