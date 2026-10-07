@@ -134,7 +134,7 @@
 
 .mst-top-bar {
   height: 3px;
-  background: var(--mst-cyan);
+  background: var(--mst-lime);
   width: 0;
   transition: width 0.35s ease;
   box-shadow: var(--mst-glow);
