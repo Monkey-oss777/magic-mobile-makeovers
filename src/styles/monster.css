@@ -124,8 +124,15 @@
   font-size: 11px;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--mst-mut);
   text-align: center;
+}
+
+.mst-top-in span {
+  color: var(--mst-cyan);
+  background: linear-gradient(90deg, #ff70bf, var(--mst-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .mst-top-bar {
