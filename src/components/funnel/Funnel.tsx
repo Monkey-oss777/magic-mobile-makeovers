@@ -286,14 +286,6 @@ export default function Funnel() {
               Desafio completo
             </div>
 
-            <h2 className="mst-h1">
-              Desafio concluído
-              <br />
-              Controle + GTA VI
-              <br />
-              <span className="mst-lime">grátis</span>
-            </h2>
-
             <div className="mst-palco">
               <img
                 src={IMG.premioBanner}
