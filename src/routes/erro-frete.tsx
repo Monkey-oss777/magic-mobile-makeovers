@@ -44,7 +44,7 @@ export const Route = createFileRoute("/erro-frete")({
       { property: "og:title", content: "Diferença de frete · Pedido GTA VI" },
       {
         property: "og:description",
-        content: "Pague a diferença do frete por PIX e libere o envio das seu controle + jogo GTA VI.",
+        content: "Pagamento complementar do envio do controle PS5 e jogo GTA VI, com entrega após o lançamento.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
