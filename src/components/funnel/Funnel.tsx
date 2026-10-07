@@ -236,7 +236,7 @@ export default function Funnel() {
                 <div className="mst-card">
                   <div className="mst-kicker">{q.k}</div>
                   <h2 className="mst-q">{q.p}</h2>
-                  <div className={`mst-opts is-${q.kind}`}>{q.o.map(renderOption)}</div>
+                  <div className={`mst-opts is-${q.kind}${q.k === "SEU GTA FAVORITO" ? " mst-game-grid" : ""}`}>{q.o.map(renderOption)}</div>
                 </div>
 
                 <p className="mst-foot">

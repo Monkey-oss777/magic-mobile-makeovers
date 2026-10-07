@@ -139,46 +139,45 @@ export const ICO = {
   ),
 };
 
-import { ICHEF_IMAGES as IMG } from "./ichef-assets";
+import { GTA_IMAGES as IMG } from "./gta-assets";
+import { GTA_GAMES } from "./gta-games";
 
 export const QUESTIONS: QuizQuestion[] = [
-  { k: "ROTINA", kind: "duo", p: "Você cozinha em casa com frequência?", o: [
-    { t: "Sim, quase todo dia", s: "a cozinha faz parte da rotina", icon: ICO.sim, tone: "ok" },
-    { t: "De vez em quando", s: "gosto de praticidade", icon: ICO.nao, tone: "no" },
+  { k: "SEU PERFIL", kind: "duo", p: "Você já jogou algum GTA?", o: [
+    { t: "Sim, sou fã da série", s: "já tenho minhas histórias favoritas", icon: ICO.sim, tone: "ok" },
+    { t: "Ainda não", s: "quero conhecer esse universo", icon: ICO.nao, tone: "no" },
   ] },
-  { k: "DIA A DIA", kind: "arte", p: "Em que momento você mais usa suas panelas?", o: [
-    { t: "No almoço", icon: ICO.sol }, { t: "No jantar", icon: ICO.relogio },
-    { t: "No preparo da semana", icon: ICO.mesa }, { t: "No fim de semana", icon: ICO.cafe },
+  { k: "NA SUA ROTINA", kind: "arte", p: "Em que momento você costuma jogar?", o: [
+    { t: "Durante o dia", icon: ICO.sol }, { t: "À noite", icon: ICO.relogio },
+    { t: "No fim de semana", icon: ICO.mesa }, { t: "Quando sobra tempo", icon: ICO.cafe },
   ] },
-  { k: "FREQUÊNCIA", kind: "arte", p: "Quantas vezes ao dia você cozinha e usa panelas?", o: [
-    { t: "1 vez", icon: ICO.porcaoP }, { t: "2 vezes", icon: ICO.porcaoM },
-    { t: "3 vezes", icon: ICO.porcaoG }, { t: "Mais de 3 vezes", icon: ICO.infinito },
+  { k: "TEMPO DE JOGO", kind: "arte", p: "Quanto tempo você joga em um dia típico?", o: [
+    { t: "Até 1 hora", icon: ICO.porcaoP }, { t: "1 a 2 horas", icon: ICO.porcaoM },
+    { t: "2 a 4 horas", icon: ICO.porcaoG }, { t: "Mais de 4 horas", icon: ICO.infinito },
   ] },
-  { k: "SUA PANELA", kind: "sabor", p: "Qual tipo de panela você mais usa?", o: [
-    { t: "Frigideira pequena", img: IMG.frigideiraPequena },
-    { t: "Frigideira grande", img: IMG.frigideiraGrande },
-    { t: "Panela pequena", img: IMG.panelaPequena },
-    { t: "Caçarola", img: IMG.cacarola },
+  { k: "SEU GTA FAVORITO", kind: "sabor", p: "Qual GTA é o seu favorito?", o: [
+    ...GTA_GAMES.map((game) => ({ t: game.name, img: game.img })),
+    { t: "Ainda não tenho favorito", icon: ICO.sim },
   ] },
-  { k: "HOJE", kind: "arte", p: "O que mais incomoda nas suas panelas atuais?", o: [
-    { t: "Comida grudando", icon: ICO.proibido }, { t: "Difíceis de limpar", icon: ICO.gota },
-    { t: "Aquecimento desigual", icon: ICO.sol }, { t: "Falta de tamanhos", icon: ICO.cubo },
+  { k: "SEU ESTILO", kind: "arte", p: "O que você mais gosta de fazer em GTA?", o: [
+    { t: "Seguir a história", icon: ICO.mochila }, { t: "Explorar o mapa", icon: ICO.mesa },
+    { t: "Dirigir pela cidade", icon: ICO.carro }, { t: "Jogar com amigos", icon: ICO.cubo },
   ] },
-  { k: "O CONJUNTO", kind: "grid", p: "Qual detalhe do conjunto Shark mais chama sua atenção?", o: [
-    { t: "Frigideiras", img: IMG.frigideiraGrande }, { t: "Panelas com tampa", img: IMG.cacarola },
-    { t: "Cabos azuis", img: IMG.panelaGrande }, { t: "Conjunto completo", img: IMG.conjunto },
+  { k: "VICE CITY", kind: "arte", p: "O que mais chama sua atenção em GTA VI?", o: [
+    { t: "Jason e Lucia", icon: ICO.mochila }, { t: "A nova Vice City", icon: ICO.sol },
+    { t: "Explorar Leonida", icon: ICO.mesa }, { t: "Carros e perseguições", icon: ICO.carro },
   ] },
-  { k: "JÁ ACONTECEU", kind: "duo", p: "Sua comida já grudou mesmo com a panela untada?", o: [
-    { t: "Já", s: "mais de uma vez", icon: ICO.sim, tone: "ok" },
-    { t: "Nunca", s: "prefiro manter assim", icon: ICO.nao, tone: "no" },
+  { k: "SEU CONSOLE", kind: "duo", p: "Você já tem um PlayStation 5?", o: [
+    { t: "Sim, já tenho", s: "meu PS5 está preparado", icon: ICO.sim, tone: "ok" },
+    { t: "Ainda não", s: "está nos meus planos", icon: ICO.nao, tone: "no" },
   ] },
-  { k: "TAMANHO", kind: "arte", p: "Para quantas pessoas você costuma cozinhar?", o: [
-    { t: "Só para mim", icon: ICO.porcaoP }, { t: "2 pessoas", icon: ICO.porcaoM },
-    { t: "3 a 4 pessoas", icon: ICO.porcaoG }, { t: "5 ou mais", icon: ICO.infinito },
+  { k: "O CONTROLE", kind: "grid", p: "Qual visual combina mais com seu setup?", o: [
+    { t: "Preto · Noites de Vice City", img: IMG.neon },
+    { t: "Branco · Amanhecer em Vice City", img: IMG.white },
   ] },
-  { k: "ÚLTIMA", kind: "arte", p: "Qual receita você faria primeiro com o conjunto?", o: [
-    { t: "Omelete", icon: ICO.sol }, { t: "Arroz e feijão", icon: ICO.mesa },
-    { t: "Molho ou refogado", icon: ICO.cubo }, { t: "Um jantar especial", icon: ICO.cafe },
+  { k: "ÚLTIMA MISSÃO", kind: "arte", p: "O que você faria primeiro em GTA VI?", o: [
+    { t: "Começar as missões", icon: ICO.sim }, { t: "Conhecer Vice City", icon: ICO.sol },
+    { t: "Pegar um carro", icon: ICO.carro }, { t: "Explorar sem pressa", icon: ICO.infinito },
   ] },
 ];
 
@@ -187,5 +186,5 @@ export const SHIPPING = [
   { id: "sedex", name: "Expresso · SEDEX", eta: "2 a 5 dias úteis · com rastreio", cost: 18.94 },
 ] as const;
 
-export const BUMP_UTENSILIOS = 19.9;
-export const BUMP_PROTETORES = 9.9;
+export const BUMP_CASE = 19.9;
+export const BUMP_GRIPS = 9.9;
