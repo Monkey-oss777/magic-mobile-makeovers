@@ -13,7 +13,7 @@
   --mst-lime: #ff70bf;
   --mst-lime-dark: #b83d82;
   --mst-cyan: oklch(0.75 0.13 300);
-  --mst-peach: oklch(0.79 0.13  fifty);
+  --mst-peach: oklch(0.79 0.13 50);
   --mst-on-accent: #230f1b;
   --mst-accent-soft: color-mix(in oklab, var(--mst-cyan) 10%, transparent);
   --mst-accent-border: color-mix(in oklab, var(--mst-cyan) 40%, transparent);
@@ -231,7 +231,7 @@
   min-height: 48px;
   border: 1px solid var(--mst-lime);
   border-radius: 8px;
-  background: rgba(255, 112, 191, 0.08);
+  background: var(--mst-accent-soft);
   color: var(--mst-lime);
   font-family: var(--mst-font-cond);
   text-transform: uppercase;
@@ -242,7 +242,7 @@
 
 .mst-cta-ghost:active {
   transform: scale(0.98);
-  background: rgba(255, 112, 191, 0.14);
+  background: var(--mst-selected);
 }
 
 /* ---------- hero ---------- */
@@ -537,7 +537,7 @@
   overflow: hidden;
   border: 1px solid var(--mst-line);
   background:
-    radial-gradient(65% 55% at 50% 45%, rgba(255, 112, 191, 0.2), transparent 72%),
+    radial-gradient(65% 55% at 50% 45%, var(--mst-selected), transparent 72%),
     var(--mst-bg-2);
 }
 
@@ -1102,15 +1102,15 @@
   gap: 14px;
   min-height: 76px;
   padding: 16px 14px;
-  border: 1px solid rgba(255, 112, 191, 0.45);
+  border: 1px solid var(--mst-accent-border);
   border-radius: 8px;
-  background: rgba(255, 112, 191, 0.1);
+  background: var(--mst-accent-soft);
   text-align: left;
 }
 
 .mst-ship-row.is-on {
   border-color: var(--mst-lime);
-  background: rgba(255, 112, 191, 0.2);
+  background: var(--mst-selected);
 }
 
 .mst-radio {
@@ -1192,9 +1192,9 @@
   gap: 10px;
   width: 100%;
   padding: 12px;
-  border: 1px dashed rgba(255, 112, 191, 0.55);
+  border: 1px dashed var(--mst-accent-border);
   border-radius: 8px;
-  background: rgba(255, 112, 191, 0.1);
+  background: var(--mst-accent-soft);
   text-align: left;
   margin-bottom: 10px;
 }
@@ -1218,7 +1218,7 @@
 .mst-bump.is-on {
   border-style: solid;
   border-color: var(--mst-lime);
-  background: rgba(255, 112, 191, 0.2);
+  background: var(--mst-selected);
 }
 
 .mst-bump-t {
@@ -1257,7 +1257,7 @@
 .mst-bump.is-on .mst-chk {
   background: var(--mst-lime);
   border-color: var(--mst-lime);
-  color: #230f1b;
+  color: var(--mst-on-accent);
 }
 
 .mst-chk svg {
@@ -1335,9 +1335,9 @@
 .mst-pay-tab {
   min-height: 52px;
   padding: 10px;
-  border: 1px solid rgba(255, 112, 191, 0.45);
+  border: 1px solid var(--mst-accent-border);
   border-radius: 8px;
-  background: rgba(255, 112, 191, 0.1);
+  background: var(--mst-accent-soft);
   font-family: var(--mst-font-cond);
   text-transform: uppercase;
   font-size: 15px;
@@ -1355,7 +1355,7 @@
 
 .mst-pay-tab.is-on {
   border-color: var(--mst-lime);
-  background: rgba(255, 112, 191, 0.2);
+  background: var(--mst-selected);
 }
 
 .mst-pix-code {
@@ -1409,7 +1409,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--mst-lime);
-  color: #230f1b;
+  color: var(--mst-on-accent);
   font-family: var(--mst-font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -1538,7 +1538,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--mst-lime);
-  color: #230f1b;
+  color: var(--mst-on-accent);
   box-shadow: var(--mst-glow);
 }
 
@@ -1633,8 +1633,8 @@
 }
 
 .mst-note-ok {
-  border: 1px solid rgba(255, 112, 191, 0.4);
-  background: rgba(255, 112, 191, 0.08);
+  border: 1px solid var(--mst-accent-border);
+  background: var(--mst-accent-soft);
   border-radius: 8px;
   padding: 16px 15px;
   font-size: 14px;
