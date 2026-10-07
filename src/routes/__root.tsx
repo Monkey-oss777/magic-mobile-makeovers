@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -40,7 +41,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -84,10 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Desafio iChef Shark" },
-      { name: "description", content: "Desafio iChef Shark: escolha três peças para sua cozinha." },
-      { property: "og:title", content: "Desafio iChef Shark" },
-      { property: "og:description", content: "Desafio iChef Shark: escolha três peças para sua cozinha." },
+      { title: "Desafio GTA VI" },
+      { name: "description", content: "Desafio GTA VI: controle PS5 + jogo, em dois modelos." },
+      { property: "og:title", content: "Desafio GTA VI" },
+      { property: "og:description", content: "Desafio GTA VI: controle PS5 + jogo, em dois modelos." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

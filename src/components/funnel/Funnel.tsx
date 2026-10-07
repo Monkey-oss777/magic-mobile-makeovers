@@ -1,11 +1,12 @@
+import FunnelButton from "@/components/funnel/FunnelButton";
 import { useEffect, useRef, useState } from "react";
 import { QUESTIONS, type QuizOption } from "@/lib/quiz-data";
 import { getPayVariant, track, type PayVariant } from "@/lib/ab";
 import { ttPageView, ttParams, ttTrack } from "@/lib/tiktok";
 import { fbPageView, fbParams, fbTrack, fbTrackCustom } from "@/lib/meta";
 import AfterSections from "./AfterSections";
-import { ICHEF_IMAGES as IMG } from "@/lib/ichef-assets";
-import { PRIZE_PRODUCTS } from "@/lib/prize-products";
+import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
+import { PRIZE_PRODUCTS, hasSelectedModel, selectModel } from "@/lib/prize-products";
 import Checkout from "./Checkout";
 
 type Screen = "intro" | "quiz" | "analise" | "premio";
@@ -28,8 +29,8 @@ export default function Funnel() {
     const v = getPayVariant();
     setVariant(v);
     track("funnel_view", v);
-    ttPageView({ content_name: "Quiz Conjunto iChef Shark" });
-    fbPageView({ content_name: "Quiz Conjunto iChef Shark" });
+    ttPageView({ content_name: "Quiz Controle PS5 GTA VI + Jogo" });
+    fbPageView({ content_name: "Quiz Controle PS5 GTA VI + Jogo" });
     return () => timers.current.forEach((t) => window.clearTimeout(t));
   }, []);
 
@@ -112,7 +113,7 @@ export default function Funnel() {
   }
 
   function openCheckout() {
-    if (picks.length !== 3) {
+    if (!hasSelectedModel(picks)) {
       document.getElementById("mst-escolha")?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -123,9 +124,7 @@ export default function Funnel() {
   }
 
   function togglePick(id: string) {
-    setPicks((current) => current.includes(id)
-      ? current.filter((pick) => pick !== id)
-      : current.length < 3 ? [...current, id] : current);
+    setPicks((current) => selectModel(current, id));
   }
 
   function renderOption(op: QuizOption, i: number) {
@@ -133,7 +132,7 @@ export default function Funnel() {
     const base = "mst-opt" + (isPicked ? " is-picked" : "");
     if (q?.kind === "duo") {
       return (
-        <button
+        <FunnelButton
           key={op.t}
           type="button"
           className={`${base} ${op.tone === "no" ? "is-no" : ""}`}
@@ -144,11 +143,11 @@ export default function Funnel() {
             {op.t}
             {op.s && <small>{op.s}</small>}
           </span>
-        </button>
+        </FunnelButton>
       );
     }
     return (
-      <button
+      <FunnelButton
         key={op.t}
         type="button"
         className={`${base} mst-opt-col`}
@@ -162,7 +161,7 @@ export default function Funnel() {
           <span className="mst-opt-ico">{op.icon}</span>
         )}
         <span className="mst-opt-txt">{op.t}</span>
-      </button>
+      </FunnelButton>
     );
   }
 
@@ -172,7 +171,7 @@ export default function Funnel() {
     <div className="mst">
       <header className="mst-top">
         <div className="mst-top-in">
-          <span>Desafio iChef · Escolha 3 peças Shark</span>
+          <span>Desafio GTA VI · Controle PS5 + Jogo</span>
         </div>
         <div className="mst-top-bar" style={{ width: `${progress}%` }} />
       </header>
@@ -181,37 +180,38 @@ export default function Funnel() {
         <div className="mst-wrap">
           {/* ══ INTRO ══ */}
           <div className={"mst-screen" + (screen === "intro" ? " is-on" : "")}>
-            <img src={IMG.logo} alt="iChef" className="mst-logo" />
+            <img src={IMG.logo} alt="Sony PlayStation" className="mst-logo" />
             <div className="mst-kicker">O desafio de hoje</div>
             <h1 className="mst-h1">
-              Responda tudo
+              Controle PS5 GTA VI
               <br />
-              e escolha 3 peças
+              + Jogo GTA VI
               <br />
               <span className="mst-lime">grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre sua rotina na cozinha. Ao final, um kit de até 3 peças do Conjunto iChef Shark saem por R$ 00,00 — as panelas são sua.
+              9 perguntas rápidas sobre o universo GTA. Ao final, escolha seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00 — você paga a entrega. Lançamento previsto para 19/11/2026; envio após o lançamento.
             </p>
 
             <div className="mst-hero-ph">
               <img
-                src={IMG.conjunto}
-                alt="Peças da linha iChef Shark"
+                src={IMG.neon}
+                alt="Controle PS5 GTA VI Preto + Jogo GTA VI"
               />
               <span className="mst-tag">R$ 0,00</span>
+              <img src={IMG.white} alt="Controle PS5 GTA VI Branco + Jogo GTA VI" />
             </div>
 
-            <button type="button" className="mst-cta" onClick={start}>
+            <FunnelButton type="button" className="mst-cta" onClick={start}>
               Começar o desafio
-            </button>
+            </FunnelButton>
 
             <div className="mst-facts">
               <span>9 perguntas</span>
               <i>/</i>
               <span>1 minuto</span>
               <i>/</i>
-              <span>3 peças grátis</span>
+              <span>Controle + jogo</span>
             </div>
           </div>
 
@@ -236,7 +236,7 @@ export default function Funnel() {
                 <div className="mst-card">
                   <div className="mst-kicker">{q.k}</div>
                   <h2 className="mst-q">{q.p}</h2>
-                  <div className={`mst-opts is-${q.kind}`}>{q.o.map(renderOption)}</div>
+                  <div className={`mst-opts is-${q.kind}${q.k === "SEU GTA FAVORITO" ? " mst-game-grid" : ""}`}>{q.o.map(renderOption)}</div>
                 </div>
 
                 <p className="mst-foot">
@@ -260,8 +260,8 @@ export default function Funnel() {
             <ul className="mst-steps">
               {[
                 "Conferindo suas 9 respostas",
-                "Checando estoque na sua região",
-                "Liberando o prêmio no seu nome",
+                "Conferindo suas preferências de jogo",
+                "Preparando a escolha do seu modelo",
               ].map((s, i) => (
                 <li key={s} className={doneSteps > i ? "is-done" : ""}>
                   {s}
@@ -287,67 +287,66 @@ export default function Funnel() {
             </div>
 
             <h2 className="mst-h1">
-              Você ganhou
+              Desafio concluído
               <br />
-              3 peças Shark
+              Controle + GTA VI
               <br />
               <span className="mst-lime">grátis</span>
             </h2>
 
             <div className="mst-palco">
               <img
-                src={IMG.conjunto}
-                alt="Peças da linha iChef Shark para escolher"
+                src={IMG.neon}
+                alt="Controle PS5 GTA VI Preto com jogo"
               />
               <div className="mst-selo">
-                <span>3 peças</span>
+                <span>Controle + jogo</span>
                 <b>R$ 0</b>
               </div>
             </div>
 
             <div className="mst-prize-name">
-              Escolha 3 peças iChef Shark
-              <span>Selecione três modelos entre as cinco opções disponíveis.</span>
+              Escolha seu controle + GTA VI
+              <span>Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.</span>
             </div>
 
             <div className="mst-pick" id="mst-escolha">
-              <div className="mst-kicker">Escolha suas 3 peças</div>
+              <div className="mst-kicker">Escolha seu modelo</div>
               <div className="mst-pick-grid">
                 {PRIZE_PRODUCTS.map((product) => {
                   const selected = picks.includes(product.id);
-                  const unavailable = picks.length >= 3 && !selected;
                   return (
-                    <button
+                    <FunnelButton
                       key={product.id}
                       type="button"
-                      className={"mst-pick-card" + (selected ? " is-on" : "") + (unavailable ? " is-off" : "")}
+                      className={"mst-pick-card" + (selected ? " is-on" : "")}
                       aria-pressed={selected}
                       onClick={() => togglePick(product.id)}
                     >
                       <span className="mst-pick-img"><img src={product.img} alt="" loading="lazy" /></span>
                       <span className="mst-pick-t">{product.name}</span>
                       <span className="mst-pick-chk" aria-hidden="true">{selected ? "✓" : ""}</span>
-                    </button>
+                    </FunnelButton>
                   );
                 })}
               </div>
               <p className="mst-pick-hint" aria-live="polite">
-                {picks.length === 3 ? "Seleção concluída — suas três peças estão prontas." : `Selecione mais ${3 - picks.length} peça${3 - picks.length === 1 ? "" : "s"} para continuar.`}
+                {hasSelectedModel(picks) ? "Modelo escolhido — controle e jogo no seu kit." : "Selecione um dos dois modelos para continuar."}
               </p>
             </div>
 
             <ul className="mst-mini">
               <li>
-                <b>3</b>
-                <span>peças</span>
+                <b>PS5</b>
+                <span>plataforma</span>
               </li>
               <li>
-                <b>Vidro</b>
-                <span>nas tampas</span>
+                <b>2</b>
+                <span>modelos</span>
               </li>
               <li>
-                <b>Azul</b>
-                <span>nos cabos</span>
+                <b>GTA VI</b>
+                <span>jogo incluído</span>
               </li>
             </ul>
 
@@ -356,9 +355,9 @@ export default function Funnel() {
               <b>{holdTxt}</b>
             </div>
 
-            <button type="button" className="mst-cta" disabled={picks.length !== 3} onClick={openCheckout}>
-              {picks.length === 3 ? "Resgatar minhas peças" : "Escolha 3 peças"}
-            </button>
+            <FunnelButton type="button" className="mst-cta" disabled={!hasSelectedModel(picks)} onClick={openCheckout}>
+              {hasSelectedModel(picks) ? "Resgatar meu kit" : "Escolha seu modelo"}
+            </FunnelButton>
           </div>
         </div>
       </section>
