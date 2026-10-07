@@ -1,3 +1,4 @@
+import FunnelButton from "@/components/funnel/FunnelButton";
 import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -270,9 +271,9 @@ function ErroFrete() {
               </div>
             </div>
 
-            <button type="button" className="mst-cta" onClick={() => setStage("aviso")}>
+            <FunnelButton type="button" className="mst-cta" onClick={() => setStage("aviso")}>
               Verificar frete correto
-            </button>
+            </FunnelButton>
           </>
         )}
 
@@ -317,9 +318,9 @@ function ErroFrete() {
               </div>
             )}
 
-            <button type="button" className="mst-cta" onClick={() => setStage("escolha")}>
+            <FunnelButton type="button" className="mst-cta" onClick={() => setStage("escolha")}>
               Ajustar frete para liberar pedido
-            </button>
+            </FunnelButton>
           </>
         )}
 
@@ -340,7 +341,7 @@ function ErroFrete() {
 
             <div className="mst-ship">
               {(Object.keys(DIFF) as ShipId[]).map((id) => (
-                <button
+                <FunnelButton
                   key={id}
                   type="button"
                   className={"mst-ship-row" + (escolha === id ? " is-on" : "")}
@@ -354,7 +355,7 @@ function ErroFrete() {
                   <span className="mst-ship-price">
                     <span className="mst-diff">falta R$ {brl(DIFF[id].diff)}</span>
                   </span>
-                </button>
+                </FunnelButton>
               ))}
             </div>
 
@@ -364,9 +365,9 @@ function ErroFrete() {
 
             {err && <div className="mst-err">{err}</div>}
 
-            <button type="button" className="mst-cta" disabled={loading} onClick={gerarPix}>
+            <FunnelButton type="button" className="mst-cta" disabled={loading} onClick={gerarPix}>
               {loading ? "Gerando PIX..." : `Pagar diferença de R$ ${brl(valor)}`}
-            </button>
+            </FunnelButton>
           </>
         )}
 
@@ -395,9 +396,9 @@ function ErroFrete() {
 
             {pixCode && (
               <>
-                <button type="button" className="mst-cta" onClick={copyPix}>
+                <FunnelButton type="button" className="mst-cta" onClick={copyPix}>
                   {copied ? "Código copiado!" : "Copiar código PIX"}
-                </button>
+                </FunnelButton>
                 <div className="mst-pix-code">{pixCode}</div>
               </>
             )}

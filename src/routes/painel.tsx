@@ -27,10 +27,10 @@ export const Route = createFileRoute("/painel")({
   head: () => ({
     meta: [
       { title: "Painel de Vendas Pagas | GTA VI" },
-      { name: "description", content: "Painel interno de vendas pagas por origem de anúncio (TikTok e Facebook)." },
+      { name: "description", content: "Painel interno do desafio GTA VI: vendas pagas por origem de anúncio e gestão de Pixels." },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "Painel de Vendas Pagas" },
-      { property: "og:description", content: "Vendas confirmadas por origem de anúncio." },
+      { property: "og:title", content: "Painel de Vendas GTA VI" },
+      { property: "og:description", content: "Vendas do desafio GTA VI confirmadas por origem de anúncio." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

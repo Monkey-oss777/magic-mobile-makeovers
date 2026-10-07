@@ -1,3 +1,4 @@
+import FunnelButton from "@/components/funnel/FunnelButton";
 import { useState } from "react";
 import { GTA_IMAGES as IMG } from "@/lib/gta-assets";
 
@@ -42,13 +43,13 @@ export default function AfterSections({ onCta }: { onCta: () => void }) {
       <section className="mst-sec"><div className="mst-wrap">
         <div className="mst-sec-label">// Dúvidas do desafio</div><h2 className="mst-h2">Antes de resgatar.</h2>
         <div className="mst-faq">{FAQ.map((item, i) => (
-          <div className="mst-faq-item" key={item.q}><button type="button" className="mst-faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>{item.q}<i>{open === i ? "−" : "+"}</i></button>{open === i && <div className="mst-faq-a">{item.a}</div>}</div>
+          <div className="mst-faq-item" key={item.q}><FunnelButton type="button" className="mst-faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>{item.q}<i>{open === i ? "−" : "+"}</i></FunnelButton>{open === i && <div className="mst-faq-a">{item.a}</div>}</div>
         ))}</div>
       </div></section>
       <section className="mst-sec"><div className="mst-wrap" style={{ textAlign: "center" }}>
         <div className="mst-sec-label">// Seu próximo jogo</div><h2 className="mst-h2">Escolha o modelo.<br /><span className="mst-lime">Prepare seu PS5.</span></h2>
         <p className="mst-sub">Controle + jogo por R$ 0 nesta oferta. Você paga a entrega e os extras que adicionar. Envio após o lançamento previsto para 19/11/2026.</p>
-        <button type="button" className="mst-cta" onClick={onCta}>Resgatar meu kit</button>
+        <FunnelButton type="button" className="mst-cta" onClick={onCta}>Resgatar meu kit</FunnelButton>
       </div></section>
     </>
   );

@@ -1,3 +1,4 @@
+import FunnelButton from "@/components/funnel/FunnelButton";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useNavigate } from "@tanstack/react-router";
@@ -355,9 +356,9 @@ export default function Checkout({ variant, picks, onClose }: Props) {
           Pedido #{pedido}. O envio acontece após o lançamento; o rastreio será enviado por e-mail.
         </p>
         <div className="mst-kicker">Pago R$ {brl(total)}</div>
-        <button type="button" className="mst-cta" style={{ marginTop: 18 }} onClick={onClose}>
+        <FunnelButton type="button" className="mst-cta" style={{ marginTop: 18 }} onClick={onClose}>
           Voltar ao início
-        </button>
+        </FunnelButton>
       </div>
     );
   }
@@ -372,7 +373,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
   return (
     <div className="mst-co" role="dialog" aria-label="Checkout do resgate">
       <div className="mst-co-head">
-        <button
+        <FunnelButton
           type="button"
           className="mst-co-back"
           aria-label="Voltar"
@@ -382,7 +383,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
             <line x1="19" y1="12" x2="5" y2="12" />
             <polyline points="12 19 5 12 12 5" />
           </svg>
-        </button>
+        </FunnelButton>
         <span className="mst-co-brand">
           <img src={IMG.logo} alt="Sony PlayStation" />
           <span>GTA VI</span>
@@ -435,9 +436,9 @@ export default function Checkout({ variant, picks, onClose }: Props) {
 
             {pixCode && (
               <>
-                <button type="button" className="mst-cta" onClick={copyPix}>
+                <FunnelButton type="button" className="mst-cta" onClick={copyPix}>
                   {copied ? "Código copiado!" : "Copiar código PIX"}
-                </button>
+                </FunnelButton>
                 <div className="mst-pix-code">{pixCode}</div>
               </>
             )}
@@ -569,7 +570,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                 </div>
                 <div className="mst-ship">
                   {SHIPPING.map((s) => (
-                    <button
+                    <FunnelButton
                       key={s.id}
                       type="button"
                       className={"mst-ship-row" + (ship === s.id ? " is-on" : "")}
@@ -585,7 +586,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                       <span className="mst-ship-price">
                         {"was" in s && s.was ? <s>R$ {brl(s.was)}</s> : null}R$ {brl(s.cost)}
                       </span>
-                    </button>
+                    </FunnelButton>
                   ))}
                 </div>
 
@@ -685,7 +686,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                   <span className="mst-lime">do seu resgate</span>
                 </h2>
 
-                <button
+                <FunnelButton
                   type="button"
                   className={"mst-bump" + (bumpCase ? " is-on" : "")}
                   onClick={() => setBumpCase((v) => !v)}
@@ -705,9 +706,9 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                       </svg>
                     </span>
                   </span>
-                </button>
+                </FunnelButton>
 
-                <button
+                <FunnelButton
                   type="button"
                   className={"mst-bump" + (bumpGrips ? " is-on" : "")}
                   onClick={() => setBumpGrips((v) => !v)}
@@ -727,7 +728,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                       </svg>
                     </span>
                   </span>
-                </button>
+                </FunnelButton>
 
                 <div className="mst-totals">
                   <div className="mst-total-row">
@@ -901,7 +902,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                  <span>{step === 3 ? "Total" : "Seu kit"}</span>
                 <b>{step === 3 ? `R$ ${brl(total)}` : "GRÁTIS"}</b>
               </span>
-              <button
+              <FunnelButton
                 type="button"
                 className="mst-cta"
                 disabled={paying}
@@ -910,7 +911,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                 }
               >
                 {paying ? "Processando..." : ctaLabel}
-              </button>
+              </FunnelButton>
             </div>
           </div>
         </div>

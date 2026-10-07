@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Responda 9 perguntas sobre sua rotina na cozinha e escolha Controle PS5 GTA VI + Jogo GTA VI por R$ 0, pagando a entrega escolhida.",
+          "Responda 9 perguntas sobre GTA e escolha um controle PS5 GTA VI Preto ou Branco com o jogo. Envio após o lançamento previsto para 19/11/2026.",
       },
       { property: "og:title", content: "Desafio GTA VI · Controle PS5 + Jogo" },
       {
         property: "og:description",
         content:
-          "9 perguntas rápidas sobre sua cozinha. Escolha Controle PS5 GTA VI + Jogo GTA VI por R$ 0; você paga o envio.",
+          "Desafio GTA VI com dois modelos de controle PS5 e jogo incluído. Envio após o lançamento de 19/11/2026.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

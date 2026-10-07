@@ -1,3 +1,4 @@
+import FunnelButton from "@/components/funnel/FunnelButton";
 import { useEffect, useRef, useState } from "react";
 import { QUESTIONS, type QuizOption } from "@/lib/quiz-data";
 import { getPayVariant, track, type PayVariant } from "@/lib/ab";
@@ -131,7 +132,7 @@ export default function Funnel() {
     const base = "mst-opt" + (isPicked ? " is-picked" : "");
     if (q?.kind === "duo") {
       return (
-        <button
+        <FunnelButton
           key={op.t}
           type="button"
           className={`${base} ${op.tone === "no" ? "is-no" : ""}`}
@@ -142,11 +143,11 @@ export default function Funnel() {
             {op.t}
             {op.s && <small>{op.s}</small>}
           </span>
-        </button>
+        </FunnelButton>
       );
     }
     return (
-      <button
+      <FunnelButton
         key={op.t}
         type="button"
         className={`${base} mst-opt-col`}
@@ -160,7 +161,7 @@ export default function Funnel() {
           <span className="mst-opt-ico">{op.icon}</span>
         )}
         <span className="mst-opt-txt">{op.t}</span>
-      </button>
+      </FunnelButton>
     );
   }
 
@@ -201,9 +202,9 @@ export default function Funnel() {
               <img src={IMG.white} alt="Controle PS5 GTA VI Branco + Jogo GTA VI" />
             </div>
 
-            <button type="button" className="mst-cta" onClick={start}>
+            <FunnelButton type="button" className="mst-cta" onClick={start}>
               Começar o desafio
-            </button>
+            </FunnelButton>
 
             <div className="mst-facts">
               <span>9 perguntas</span>
@@ -316,7 +317,7 @@ export default function Funnel() {
                   const selected = picks.includes(product.id);
                   const unavailable = false;
                   return (
-                    <button
+                    <FunnelButton
                       key={product.id}
                       type="button"
                       className={"mst-pick-card" + (selected ? " is-on" : "") + (unavailable ? " is-off" : "")}
@@ -326,7 +327,7 @@ export default function Funnel() {
                       <span className="mst-pick-img"><img src={product.img} alt="" loading="lazy" /></span>
                       <span className="mst-pick-t">{product.name}</span>
                       <span className="mst-pick-chk" aria-hidden="true">{selected ? "✓" : ""}</span>
-                    </button>
+                    </FunnelButton>
                   );
                 })}
               </div>
@@ -355,9 +356,9 @@ export default function Funnel() {
               <b>{holdTxt}</b>
             </div>
 
-            <button type="button" className="mst-cta" disabled={!hasSelectedModel(picks)} onClick={openCheckout}>
+            <FunnelButton type="button" className="mst-cta" disabled={!hasSelectedModel(picks)} onClick={openCheckout}>
               {hasSelectedModel(picks) ? "Resgatar meu kit" : "Escolha seu modelo"}
-            </button>
+            </FunnelButton>
           </div>
         </div>
       </section>
