@@ -237,8 +237,9 @@
 
 .mst-tag {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -4px;
+  right: 0;
+  z-index: 1;
   padding: 6px 10px;
   border-radius: 999px;
   background: var(--mst-lime);

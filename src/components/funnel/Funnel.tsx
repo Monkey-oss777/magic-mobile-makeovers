@@ -315,12 +315,11 @@ export default function Funnel() {
               <div className="mst-pick-grid">
                 {PRIZE_PRODUCTS.map((product) => {
                   const selected = picks.includes(product.id);
-                  const unavailable = false;
                   return (
                     <FunnelButton
                       key={product.id}
                       type="button"
-                      className={"mst-pick-card" + (selected ? " is-on" : "") + (unavailable ? " is-off" : "")}
+                      className={"mst-pick-card" + (selected ? " is-on" : "")}
                       aria-pressed={selected}
                       onClick={() => togglePick(product.id)}
                     >
