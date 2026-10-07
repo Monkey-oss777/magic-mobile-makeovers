@@ -140,7 +140,10 @@ export const ICO = {
 };
 
 import { GTA_IMAGES as IMG } from "./gta-assets";
-import { GTA_GAMES } from "./gta-games";
+import sanAndreas from "@/assets/san-andreas-quiz.jpg";
+import viceCity from "@/assets/vice-city-quiz.jpg";
+import gta4 from "@/assets/gta4-quiz.jpg";
+import gta5 from "@/assets/gta5-quiz.jpg";
 
 export const QUESTIONS: QuizQuestion[] = [
   { k: "SEU PERFIL", kind: "duo", p: "Você já jogou algum GTA?", o: [
