@@ -300,9 +300,6 @@ export default function Funnel() {
               Escolha seu controle + GTA VI
               <span>Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.</span>
             </div>
-            <p className="mst-foot">
-              Concluir o desafio não confirma seu pedido. Confira as condições da oferta e o valor da entrega antes de pagar.
-            </p>
 
             <div className="mst-pick" id="mst-escolha">
               <div className="mst-kicker">Escolha seu modelo</div>

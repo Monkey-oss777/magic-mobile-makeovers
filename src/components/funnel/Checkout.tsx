@@ -392,9 +392,6 @@ export default function Checkout({ variant, picks, onClose }: Props) {
       </div>
 
       <div className="mst-co-body">
-        <p className="mst-foot">
-          Concluir o desafio não confirma seu pedido. Confira as condições da oferta e o valor da entrega antes de pagar.
-        </p>
         {pixReady ? (
           <>
             <div className="mst-kicker">Último passo</div>
