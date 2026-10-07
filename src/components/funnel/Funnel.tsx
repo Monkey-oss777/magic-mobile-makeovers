@@ -188,9 +188,9 @@ export default function Funnel() {
             <h1 className="mst-h1">
               Responda tudo
               <br />
-              e ganhe Controle PS5 GTA VI
+              e descubra se ganhou
               <br />
-              + Jogo GTA VI <span className="mst-lime">Grátis</span>
+              Controle PS5 GTA VI + Jogo GTA VI <span className="mst-lime">Grátis</span>
             </h1>
             <p className="mst-sub">
               9 perguntas rápidas sobre o universo GTA. Ao final, descubra se ganhou seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00.
@@ -251,7 +251,7 @@ export default function Funnel() {
 
           {/* ══ ANÁLISE ══ */}
           <div className={"mst-screen" + (screen === "analise" ? " is-on" : "")}>
-            <div className="mst-kicker">Conferindo</div>
+            <div className="mst-kicker">Analisando suas respostas</div>
             <h2 className="mst-h1">
               Validando
               <br />
@@ -263,8 +263,8 @@ export default function Funnel() {
             <ul className="mst-steps">
               {[
                 "Conferindo suas 9 respostas",
-                "Conferindo suas preferências de jogo",
-                "Preparando a escolha do seu modelo",
+                "Organizando suas preferências de jogo",
+                "Preparando os detalhes da oferta",
               ].map((s, i) => (
                 <li key={s} className={doneSteps > i ? "is-done" : ""}>
                   {s}
@@ -300,6 +300,9 @@ export default function Funnel() {
               Escolha seu controle + GTA VI
               <span>Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.</span>
             </div>
+            <p className="mst-foot">
+              Concluir o desafio não confirma seu pedido. Confira as condições da oferta e o valor da entrega antes de pagar.
+            </p>
 
             <div className="mst-pick" id="mst-escolha">
               <div className="mst-kicker">Escolha seu modelo</div>
