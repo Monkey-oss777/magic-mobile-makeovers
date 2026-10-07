@@ -12,7 +12,6 @@ import RegionAnalysis from "./RegionAnalysis";
 
 type Screen = "intro" | "quiz" | "analise" | "regiao" | "premio";
 
-
 export default function Funnel() {
   const [variant, setVariant] = useState<PayVariant>("pix");
   const [screen, setScreen] = useState<Screen>("intro");
@@ -103,25 +102,21 @@ export default function Funnel() {
         }, ms),
       );
     });
-    timers.current.push(
-      window.setTimeout(() => toScreen("regiao"), 2800),
-    );
+    timers.current.push(window.setTimeout(() => toScreen("regiao"), 2800));
   }
 
   const finishRegion = useCallback(() => {
-    {
-      {
-        track("quiz_complete", variant, { answers: answers.current.length });
-        ttTrack("SubmitForm", ttParams(0, { content_name: "Quiz concluído" }));
-        fbTrack("Lead", fbParams(0, { content_name: "Quiz concluído" }));
-        toScreen("premio");
-      }
-    }
+    track("quiz_complete", variant, { answers: answers.current.length });
+    ttTrack("SubmitForm", ttParams(0, { content_name: "Quiz concluído" }));
+    fbTrack("Lead", fbParams(0, { content_name: "Quiz concluído" }));
+    toScreen("premio");
   }, [variant]);
 
   function openCheckout() {
     if (!hasSelectedModel(picks)) {
-      document.getElementById("mst-escolha")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document
+        .getElementById("mst-escolha")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     track("checkout_click", variant, { picks: picks.join(",") });
@@ -200,14 +195,12 @@ export default function Funnel() {
               Controle PS5 GTA VI + Jogo GTA VI <span className="mst-lime">Grátis</span>
             </h1>
             <p className="mst-sub">
-              9 perguntas rápidas sobre o universo GTA. Ao final, descubra se ganhou seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00.
+              9 perguntas rápidas sobre o universo GTA. Ao final, descubra se ganhou seu modelo de
+              controle PS5 GTA VI + Jogo GTA VI por R$ 0,00.
             </p>
 
             <div className="mst-hero-ph">
-              <img
-                src={IMG.neon}
-                alt="Controle PS5 GTA VI Preto + Jogo GTA VI"
-              />
+              <img src={IMG.neon} alt="Controle PS5 GTA VI Preto + Jogo GTA VI" />
               <span className="mst-tag">R$ 0,00</span>
               <img src={IMG.white} alt="Controle PS5 GTA VI Branco + Jogo GTA VI" />
             </div>
@@ -246,12 +239,14 @@ export default function Funnel() {
                 <div className="mst-card">
                   <div className="mst-kicker">{q.k}</div>
                   <h2 className="mst-q">{q.p}</h2>
-                  <div className={`mst-opts is-${q.kind}${q.k === "SEU GTA FAVORITO" ? " mst-game-grid" : ""}`}>{q.o.map(renderOption)}</div>
+                  <div
+                    className={`mst-opts is-${q.kind}${q.k === "SEU GTA FAVORITO" ? " mst-game-grid" : ""}`}
+                  >
+                    {q.o.map(renderOption)}
+                  </div>
                 </div>
 
-                <p className="mst-foot">
-                  Não existe resposta errada — só precisa responder todas.
-                </p>
+                <p className="mst-foot">Não existe resposta errada — só precisa responder todas.</p>
               </>
             )}
           </div>
@@ -301,15 +296,14 @@ export default function Funnel() {
             </div>
 
             <div className="mst-palco">
-              <img
-                src={IMG.premioBanner}
-                alt="Desafio concluído — Controle + GTA VI grátis"
-              />
+              <img src={IMG.premioBanner} alt="Desafio concluído — Controle + GTA VI grátis" />
             </div>
 
             <div className="mst-prize-name">
               Escolha seu controle + GTA VI
-              <span>Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.</span>
+              <span>
+                Escolha a edição Preta ou Branca. Cada kit inclui um controle e o jogo para PS5.
+              </span>
             </div>
 
             <div className="mst-pick" id="mst-escolha">
@@ -325,15 +319,21 @@ export default function Funnel() {
                       aria-pressed={selected}
                       onClick={() => togglePick(product.id)}
                     >
-                      <span className="mst-pick-img"><img src={product.img} alt="" loading="lazy" /></span>
+                      <span className="mst-pick-img">
+                        <img src={product.img} alt="" loading="lazy" />
+                      </span>
                       <span className="mst-pick-t">{product.name}</span>
-                      <span className="mst-pick-chk" aria-hidden="true">{selected ? "✓" : ""}</span>
+                      <span className="mst-pick-chk" aria-hidden="true">
+                        {selected ? "✓" : ""}
+                      </span>
                     </FunnelButton>
                   );
                 })}
               </div>
               <p className="mst-pick-hint" aria-live="polite">
-                {hasSelectedModel(picks) ? "Modelo escolhido — controle e jogo no seu kit." : "Selecione um dos dois modelos para continuar."}
+                {hasSelectedModel(picks)
+                  ? "Modelo escolhido — controle e jogo no seu kit."
+                  : "Selecione um dos dois modelos para continuar."}
               </p>
             </div>
 
@@ -357,7 +357,12 @@ export default function Funnel() {
               <b>{holdTxt}</b>
             </div>
 
-            <FunnelButton type="button" className="mst-cta" disabled={!hasSelectedModel(picks)} onClick={openCheckout}>
+            <FunnelButton
+              type="button"
+              className="mst-cta"
+              disabled={!hasSelectedModel(picks)}
+              onClick={openCheckout}
+            >
               {hasSelectedModel(picks) ? "Resgatar meu kit" : "Escolha seu modelo"}
             </FunnelButton>
           </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Geo = { region: string; lat: number; lon: number } | null;
 
@@ -6,11 +6,9 @@ export default function RegionAnalysis({ active, onDone }: { active: boolean; on
   const [geo, setGeo] = useState<Geo>(null);
   const [step, setStep] = useState(0);
   const [pct, setPct] = useState(0);
-  const started = useRef(false);
 
   useEffect(() => {
-    if (!active || started.current) return;
-    started.current = true;
+    if (!active) return;
     const ctrl = new AbortController();
     const to = window.setTimeout(() => ctrl.abort(), 2500);
     fetch("https://ipapi.co/json/", { signal: ctrl.signal })
