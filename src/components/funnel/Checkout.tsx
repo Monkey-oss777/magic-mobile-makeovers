@@ -565,7 +565,7 @@ export default function Checkout({ variant, picks, onClose }: Props) {
                     <circle cx="17.5" cy="18" r="1.8" />
                   </svg>
                   <span>
-                    O controle + jogo saem por R$ 0,00 nesta oferta; você paga a entrega. Lançamento previsto para 19/11/2026. Envio após o lançamento, em caixa reforçada, com proteção e rastreamento.
+                    O controle + jogo saem por R$ 0,00 nesta oferta; você paga a entrega. Envio imediato em caixa reforçada, com proteção e rastreamento.
                   </span>
                 </div>
                 <div className="mst-ship">
