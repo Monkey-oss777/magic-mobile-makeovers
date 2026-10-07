@@ -1777,3 +1777,20 @@
 .mst-co-brand img { width: 100px; }
 .mst-top-in { color: var(--mst-cyan); }
 @media (max-width: 420px) { .mst-co-secure { font-size: 8px; white-space: normal; text-align: right; } .mst-hero-ph img { max-height: 180px; } .mst-game-grid { max-height: 470px; } .mst-h1 { font-size: 40px; } .mst-h2 { font-size: 32px; } .mst-q { font-size: 27px; } }
+
+/* ── Análise regional ── */
+.mst-ra-map{position:relative;margin:18px 0 16px;height:220px;border-radius:16px;overflow:hidden;border:1px solid color-mix(in oklab,var(--mst-cyan) 45%,transparent);background:color-mix(in oklab,var(--mst-cyan) 8%,transparent);box-shadow:0 0 24px color-mix(in oklab,var(--mst-cyan) 25%,transparent)}
+.mst-ra-map iframe{width:100%;height:100%;border:0;filter:invert(.9) hue-rotate(180deg) saturate(.8);pointer-events:none}
+.mst-ra-scan{position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,color-mix(in oklab,var(--mst-cyan) 30%,transparent) 50%,transparent 100%);height:40%;animation:mstRaScan 2.2s linear infinite;pointer-events:none}
+@keyframes mstRaScan{from{transform:translateY(-100%)}to{transform:translateY(260%)}}
+.mst-ra-radar{position:absolute;inset:0;display:grid;place-items:center;background:repeating-radial-gradient(circle,transparent 0 28px,color-mix(in oklab,var(--mst-cyan) 25%,transparent) 29px 30px)}
+.mst-ra-radar span{width:14px;height:14px;border-radius:50%;background:var(--mst-peach);box-shadow:0 0 0 0 var(--mst-peach);animation:mstRaPing 1.4s ease-out infinite}
+@keyframes mstRaPing{to{box-shadow:0 0 0 28px transparent}}
+.mst-ra-steps{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+.mst-ra-steps li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:color-mix(in oklab,var(--mst-cyan) 6%,transparent);border:1px solid color-mix(in oklab,var(--mst-cyan) 18%,transparent);opacity:.4;transition:opacity .3s,border-color .3s;text-align:left;font-size:15px}
+.mst-ra-steps li.is-run,.mst-ra-steps li.is-done{opacity:1}
+.mst-ra-steps li.is-done{border-color:color-mix(in oklab,var(--mst-lime) 55%,transparent)}
+.mst-ra-steps i{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid color-mix(in oklab,var(--mst-cyan) 50%,transparent)}
+.mst-ra-steps li.is-run i{border-top-color:var(--mst-peach);animation:mstRaSpin .8s linear infinite}
+.mst-ra-steps li.is-done i{border-color:var(--mst-lime);background:var(--mst-lime)}
+@keyframes mstRaSpin{to{transform:rotate(360deg)}}
