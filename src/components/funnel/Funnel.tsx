@@ -183,11 +183,11 @@ export default function Funnel() {
             <img src={IMG.logo} alt="Sony PlayStation" className="mst-logo" />
             <div className="mst-kicker">O desafio de hoje</div>
             <h1 className="mst-h1">
-              Controle PS5 GTA VI
+              Responda tudo
               <br />
-              + Jogo GTA VI
+              e ganhe Controle PS5 GTA VI
               <br />
-              <span className="mst-lime">grátis</span>
+              + Jogo GTA VI <span className="mst-lime">Grátis</span>
             </h1>
             <p className="mst-sub">
               9 perguntas rápidas sobre o universo GTA. Ao final, descubra se ganhou seu modelo de controle PS5 GTA VI + Jogo GTA VI por R$ 0,00.

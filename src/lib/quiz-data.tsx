@@ -140,7 +140,10 @@ export const ICO = {
 };
 
 import { GTA_IMAGES as IMG } from "./gta-assets";
-import { GTA_GAMES } from "./gta-games";
+import sanAndreas from "@/assets/san-andreas-quiz.jpg";
+import viceCity from "@/assets/vice-city-quiz.jpg";
+import gta4 from "@/assets/gta4-quiz.jpg";
+import gta5 from "@/assets/gta5-quiz.jpg";
 
 export const QUESTIONS: QuizQuestion[] = [
   { k: "SEU PERFIL", kind: "duo", p: "Você já jogou algum GTA?", o: [
@@ -156,8 +159,10 @@ export const QUESTIONS: QuizQuestion[] = [
     { t: "2 a 4 horas", icon: ICO.porcaoG }, { t: "Mais de 4 horas", icon: ICO.infinito },
   ] },
   { k: "SEU GTA FAVORITO", kind: "sabor", p: "Qual GTA é o seu favorito?", o: [
-    ...GTA_GAMES.map((game) => ({ t: game.name, img: game.img })),
-    { t: "Ainda não tenho favorito", icon: ICO.sim },
+    { t: "San Andreas", img: sanAndreas },
+    { t: "Vice City", img: viceCity },
+    { t: "GTA 4", img: gta4 },
+    { t: "GTA 5", img: gta5 },
   ] },
   { k: "SEU ESTILO", kind: "arte", p: "O que você mais gosta de fazer em GTA?", o: [
     { t: "Seguir a história", icon: ICO.mochila }, { t: "Explorar o mapa", icon: ICO.mesa },
