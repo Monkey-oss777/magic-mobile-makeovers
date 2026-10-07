@@ -543,6 +543,48 @@
   white-space: nowrap;
 }
 
+.mst-resgate-gal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.mst-resgate-card {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--mst-accent-border);
+  background: var(--mst-bg-2);
+}
+
+.mst-resgate-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.mst-resgate-card figcaption {
+  padding: 8px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: var(--mst-mut);
+}
+
+@media (max-width: 480px) {
+  .mst-resgate-gal {
+    grid-template-columns: 1fr;
+  }
+
+  .mst-resgate-card img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .mst-prize-name {
   font-family: var(--mst-font-cond);
   font-weight: 700;
