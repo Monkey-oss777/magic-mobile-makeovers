@@ -7,6 +7,7 @@ import jasonLucia from "@/assets/gta-jason-lucia.png.asset.json";
 import viceCity from "@/assets/gta-vice-city.png.asset.json";
 import lucia from "@/assets/gta-lucia.png.asset.json";
 import premioBanner from "@/assets/gta-premio-banner.png.asset.json";
+import nightScenery from "@/assets/vice-city-night.jpg";
 
 export const GTA_IMAGES = {
   logo: logo.url,
@@ -18,4 +19,5 @@ export const GTA_IMAGES = {
   viceCity: viceCity.url,
   lucia: lucia.url,
   premioBanner: premioBanner.url,
+  nightScenery,
 };
