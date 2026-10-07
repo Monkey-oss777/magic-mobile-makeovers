@@ -147,7 +147,7 @@
   height: clamp(42px, 12vw, 66px);
   width: min(100%, 230px);
   object-fit: contain;
-  margin: 0 auto 10px;
+  margin: 0 auto clamp(24px, 7vw, 40px);
 }
 
 .mst-screen {

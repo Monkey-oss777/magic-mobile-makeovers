@@ -156,8 +156,10 @@ export const QUESTIONS: QuizQuestion[] = [
     { t: "2 a 4 horas", icon: ICO.porcaoG }, { t: "Mais de 4 horas", icon: ICO.infinito },
   ] },
   { k: "SEU GTA FAVORITO", kind: "sabor", p: "Qual GTA é o seu favorito?", o: [
-    ...GTA_GAMES.map((game) => ({ t: game.name, img: game.img })),
-    { t: "Ainda não tenho favorito", icon: ICO.sim },
+    { t: "San Andreas", img: sanAndreas },
+    { t: "Vice City", img: viceCity },
+    { t: "GTA 4", img: gta4 },
+    { t: "GTA 5", img: gta5 },
   ] },
   { k: "SEU ESTILO", kind: "arte", p: "O que você mais gosta de fazer em GTA?", o: [
     { t: "Seguir a história", icon: ICO.mochila }, { t: "Explorar o mapa", icon: ICO.mesa },
